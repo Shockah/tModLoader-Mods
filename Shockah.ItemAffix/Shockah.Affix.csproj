@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Affix.cs" />
+    <Compile Include="AffixGenerator.cs" />
     <Compile Include="AffixGlobalItem.cs" />
     <Compile Include="AffixItemInfo.cs" />
     <Compile Include="AffixMod.cs" />
