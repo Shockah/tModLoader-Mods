@@ -34,6 +34,7 @@ namespace Shockah.Affix.Content
 			tag["defense"] = defense;
 		}
 
+		[CallOrder(-900)]
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
 			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("+{0} defense while held", defense));
