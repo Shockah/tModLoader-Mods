@@ -78,6 +78,9 @@
     <Compile Include="Content\HiddenPotentialKillRequirement.cs" />
     <Compile Include="Content\HiddenPotentialHitRequirement.cs" />
     <Compile Include="Content\HiddenPotentialIntRequirement.cs" />
+    <Compile Include="Content\WeaponHeldAffix.cs" />
+    <Compile Include="Content\WeaponHeldDefenseAffix.cs" />
+    <Compile Include="Content\Hooks\AffixContentModPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

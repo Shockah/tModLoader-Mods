@@ -52,5 +52,13 @@ namespace Shockah.Affix
 				method(item, player, target, damage, knockBack, crit);
 			}
 		}
+
+		public void UpdateEquip(Item item, Player player)
+		{
+			foreach (var method in Hooks.Build<Affix, Action<Item, Player>>(affixes, o => o.UpdateEquip))
+			{
+				method(item, player);
+			}
+		}
 	}
 }

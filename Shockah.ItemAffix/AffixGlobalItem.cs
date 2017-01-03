@@ -11,7 +11,7 @@ namespace Shockah.Affix
 	{
 		public override bool NeedsSaving(Item item)
 		{
-			return (mod as AffixMod).CanApplyAffixes(item);
+			return item.CanApplyAffixes();
 		}
 
 		public override TagCompound Save(Item item)
@@ -30,7 +30,7 @@ namespace Shockah.Affix
 			if (tag.HasTag("affixes"))
 			{
 				AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
-				info.affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(tag => TagSerializables.Deserialize<Affix>(tag)));
+				info.affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => TagSerializables.Deserialize<Affix>(affixTag)));
 			}
 		}
 
@@ -49,6 +49,12 @@ namespace Shockah.Affix
 		{
 			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
 			info.OnHitNPC(item, player, target, damage, knockBack, crit);
+		}
+
+		public override void UpdateEquip(Item item, Player player)
+		{
+			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
+			info.UpdateEquip(item, player);
 		}
 	}
 }

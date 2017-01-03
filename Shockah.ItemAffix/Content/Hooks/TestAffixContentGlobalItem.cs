@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Shockah.Affix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -13,10 +14,21 @@ namespace Shockah.Affix.Content
 				return;
 
 			Random rand = new Random();
-			List<Affix> affixes = new List<Affix>();
+			List<Dynamic<Affix>> affixes = new List<Dynamic<Affix>>();
 
 			affixes.Add(OnHitBuffAffix.Fiery());
 			affixes.Add(OnHitBuffAffix.Poisoned());
+			affixes.Add((Func<Affix>)(() =>
+			{
+				List<Affix> subaffixes = new List<Affix>()
+				{
+					WeaponHeldDefenseAffix.Defense3,
+					WeaponHeldDefenseAffix.Defense6,
+					WeaponHeldDefenseAffix.Defense9,
+					WeaponHeldDefenseAffix.Defense12
+				};
+				return subaffixes[rand.Next(subaffixes.Count)];
+			}));
 
 			foreach (Affix affix in affixes)
 			{
