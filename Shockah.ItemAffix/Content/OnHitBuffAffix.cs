@@ -8,70 +8,62 @@ using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix.Content
 {
-	public class OnHitBuffAffix : NamedAffix
-	{
-		public static readonly AffixFactory Fiery = new OnHitBuffAffixFactory("Fiery", BuffID.OnFire, 60 * 5, "Puts enemies on fire");
-		public static readonly AffixFactory Poisoned = new OnHitBuffAffixFactory("Poisoned", BuffID.Poisoned, 60 * 5, "Poisons enemies");
-
-		public OnHitBuffAffix(OnHitBuffAffixFactory factory, string name, bool prefixedName = true) : base(factory, name, prefixedName)
-		{
-		}
-
-		public OnHitBuffAffix(OnHitBuffAffixFactory factory, string name, string format) : base(factory, name, format)
-		{
-		}
-
-		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-		{
-			OnHitBuffAffixFactory factory = this.factory as OnHitBuffAffixFactory;
-			if (factory.tooltip != null)
-			{
-				TooltipLine line = new TooltipLine(ModLoader.GetMod("Shockah.Affix"), factory.internalName, factory.tooltip);
-				line.isModifier = true;
-				line.isModifierBad = false;
-				tooltips.Add(line);
-			}
-		}
-
-		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
-		{
-			OnHitBuffAffixFactory factory = this.factory as OnHitBuffAffixFactory;
-			target.AddBuff(factory.buffType, factory.buffTime);
-		}
-	}
-
-	public class OnHitBuffAffixFactory : NamedAffixFactory
+	public class OnHitBuffAffix : NamedItemAffix
 	{
 		public readonly int buffType;
 		public readonly Dynamic<int> buffTime;
 		public readonly string tooltip;
 
-		public OnHitBuffAffixFactory(string name, int buffType, Dynamic<int> buffTime, string tooltip) : this(name, true, buffType, buffTime, tooltip)
+		public static readonly Func<OnHitBuffAffix> Fiery = () => new OnHitBuffAffix("Fiery", BuffID.OnFire, 60 * 5, "Puts enemies on fire");
+		public static readonly Func<OnHitBuffAffix> Poisoned = () => new OnHitBuffAffix("Poisoned", BuffID.Poisoned, 60 * 5, "Poisons enemies");
+
+		public static readonly TagDeserializer<OnHitBuffAffix> DESERIALIZER = new TagDeserializer<OnHitBuffAffix>(tag =>
+		{
+			return new OnHitBuffAffix(
+				tag.GetString("name"),
+				tag.GetInt("buffType"),
+				TagSerializables.Deserialize<Dynamic<int>>(tag["buffTime"] as TagCompound),
+				tag.GetString("tooltip")
+			);
+		});
+
+		public OnHitBuffAffix(string name, int buffType, Dynamic<int> buffTime, string tooltip) : this(name, true, buffType, buffTime, tooltip)
 		{
 		}
 
-		public OnHitBuffAffixFactory(string name, bool prefixedName, int buffType, Dynamic<int> buffTime, string tooltip) : base(string.Format("{0}{1}", typeof(OnHitBuffAffixFactory).FullName, buffType), name, prefixedName)
+		public OnHitBuffAffix(string name, bool prefixedName, int buffType, Dynamic<int> buffTime, string tooltip) : base(name, prefixedName)
 		{
 			this.buffType = buffType;
 			this.buffTime = buffTime;
 			this.tooltip = tooltip;
 		}
 
-		public OnHitBuffAffixFactory(string name, string format, int buffType, Dynamic<int> buffTime, string tooltip) : base(string.Format("{0}{1}", typeof(OnHitBuffAffixFactory).FullName, buffType), name, format)
+		public OnHitBuffAffix(string name, string format, int buffType, Dynamic<int> buffTime, string tooltip) : base(name, format)
 		{
 			this.buffType = buffType;
 			this.buffTime = buffTime;
 			this.tooltip = tooltip;
 		}
 
-		public override Affix Create(Item item, TagCompound tag)
+		public override void SerializeData(TagCompound tag)
 		{
-			return new OnHitBuffAffix(this, name, format);
+			base.SerializeData(tag);
+			tag["buffType"] = buffType;
+			tag["buffTime"] = TagSerializables.Serialize(buffTime);
+			tag["tooltip"] = tooltip;
 		}
 
-		public override TagCompound Store(Item item, Affix affix)
+		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			return null;
+			TooltipLine line = new TooltipLine(ModLoader.GetMod("Shockah.Affix"), GetType().FullName, tooltip);
+			line.isModifier = true;
+			line.isModifierBad = false;
+			tooltips.Add(line);
+		}
+
+		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+			target.AddBuff(buffType, buffTime);
 		}
 	}
 }

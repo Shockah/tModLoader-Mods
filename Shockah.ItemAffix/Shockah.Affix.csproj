@@ -38,44 +38,50 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Game\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Graphics\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Xact\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Xact.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="tModLoader">
       <HintPath>..\tModLoader.exe</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <HintPath>..\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <HintPath>..\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact">
+      <HintPath>..\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Affix.cs" />
-    <Compile Include="AffixFactory.cs" />
     <Compile Include="AffixGlobalItem.cs" />
     <Compile Include="AffixItemInfo.cs" />
     <Compile Include="AffixMod.cs" />
-    <Compile Include="Content\AffixContentGlobalItem.cs" />
-    <Compile Include="Content\HiddenPotentialAffix.cs" />
-    <Compile Include="Content\NamedAffix.cs" />
     <Compile Include="Content\OnHitBuffAffix.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Utils\Dynamic.cs" />
     <Compile Include="Utils\Hooks.cs" />
     <Compile Include="UnloadedAffix.cs" />
+    <Compile Include="Utils\TagSerializable.cs" />
+    <Compile Include="NamedItemAffix.cs" />
+    <Compile Include="Content\HiddenPotentialAffix.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Content\Hooks\TestAffixContentGlobalItem.cs" />
+    <Compile Include="Content\Hooks\AffixContentGlobalNPC.cs" />
+    <Compile Include="Content\Hooks\AffixContentGlobalProjectile.cs" />
+    <Compile Include="Content\Hooks\AffixContentNPCInfo.cs" />
+    <Compile Include="Content\Hooks\AffixContentProjectileInfo.cs" />
+    <Compile Include="Content\HiddenPotentialRequirement.cs" />
+    <Compile Include="Content\HiddenPotentialKillRequirement.cs" />
+    <Compile Include="Content\HiddenPotentialHitRequirement.cs" />
+    <Compile Include="Content\HiddenPotentialIntRequirement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Content\Hooks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

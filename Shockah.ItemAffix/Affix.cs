@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Shockah.Affix.Utils;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix
 {
-	public abstract class Affix
-    {
-		public readonly AffixFactory factory;
+	public abstract class Affix : TagSerializable
+	{
 		public readonly string name;
 
-		public Affix(AffixFactory factory, string name)
+		public Affix(string name)
 		{
-			this.factory = factory;
 			this.name = name;
+		}
+
+		public virtual void SerializeData(TagCompound tag)
+		{
+			tag["name"] = name;
 		}
 
 		public virtual string GetFormattedName(Item item, string oldName)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Shockah.Affix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -19,18 +20,7 @@ namespace Shockah.Affix
 			TagCompound tag = new TagCompound();
 
 			if (info.affixes.Count != 0)
-			{
-				TagCompound affixesTag = new TagCompound();
-				foreach (Affix affix in info.affixes)
-				{
-					TagCompound affixTag = affix.factory.Store(item, affix);
-					if (affixTag != null)
-						affixesTag[affix.factory.internalName] = affixTag;
-					else
-						affixesTag[affix.factory.internalName] = false;
-				}
-				tag["affixes"] = affixesTag;
-			}
+				tag["affixes"] = info.affixes.Select(affix => TagSerializables.Serialize(affix)).ToList();
 
 			return tag;
 		}
@@ -40,15 +30,7 @@ namespace Shockah.Affix
 			if (tag.HasTag("affixes"))
 			{
 				AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
-
-				TagCompound affixesTag = tag["affixes"] as TagCompound;
-				foreach (KeyValuePair<string, object> kvp in affixesTag)
-				{
-					AffixFactory factory = (mod as AffixMod).GetAffixFactory(kvp.Key);
-					if (factory == null)
-						factory = new UnloadedAffixFactory(kvp.Key);
-					info.affixes.Add(factory.Create(item, kvp.Value as TagCompound));
-				}
+				info.affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(tag => TagSerializables.Deserialize<Affix>(tag)));
 			}
 		}
 

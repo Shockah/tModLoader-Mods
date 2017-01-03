@@ -1,14 +1,20 @@
 ﻿using System;
+using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix.Utils
 {
-	public abstract class Dynamic<T>
+	public abstract class Dynamic<T> : TagSerializable
 	{
 		public abstract T Value
 		{
 			get;
 		}
-		
+
+		public virtual TagCompound SerializeData()
+		{
+			throw new NotImplementedException();
+		}
+
 		public static implicit operator T(Dynamic<T> self)
 		{
 			return self.Value;
@@ -27,6 +33,11 @@ namespace Shockah.Affix.Utils
 
 	public class DynamicValue<T> : Dynamic<T>
 	{
+		public static readonly TagDeserializer<DynamicValue<T>> DESERIALIZER = new TagDeserializer<DynamicValue<T>>(tag =>
+		{
+			return new DynamicValue<T>((T)tag["value"]);
+		});
+
 		public readonly T value;
 
 		public override T Value => value;
@@ -34,6 +45,13 @@ namespace Shockah.Affix.Utils
 		public DynamicValue(T value)
 		{
 			this.value = value;
+		}
+
+		public override TagCompound SerializeData()
+		{
+			TagCompound tag = new TagCompound();
+			tag["value"] = value;
+			return tag;
 		}
 	}
 
@@ -46,6 +64,37 @@ namespace Shockah.Affix.Utils
 		public DynamicDelegate(Func<T> @delegate)
 		{
 			this.@delegate = @delegate;
+		}
+	}
+
+	public class DynamicIntRange : Dynamic<int>
+	{
+		public static readonly TagDeserializer<DynamicIntRange> DESERIALIZER = new TagDeserializer<DynamicIntRange>(tag => {
+			return new Tuple<int, int>(tag.GetInt("a"), tag.GetInt("b"));
+		});
+
+		public readonly Tuple<int, int> range;
+		public readonly Random random;
+
+		public override int Value => random.Next(Math.Min(range.Item1, range.Item2), Math.Max(range.Item1, range.Item2) + 1);
+
+		public DynamicIntRange(Tuple<int, int> range, Random random = null)
+		{
+			this.range = range;
+			this.random = random ?? new Random();
+		}
+
+		public static implicit operator DynamicIntRange(Tuple<int, int> range)
+		{
+			return new DynamicIntRange(range);
+		}
+
+		public override TagCompound SerializeData()
+		{
+			TagCompound tag = new TagCompound();
+			tag["a"] = range.Item1;
+			tag["b"] = range.Item2;
+			return tag;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,39 +6,27 @@ namespace Shockah.Affix
 {
 	public static class Extensions
 	{
-		public static void ApplyAffix(this Item item, string internalName)
-		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).ApplyAffix(item, internalName);
-		}
-
-		public static void ApplyAffix(this Item item, AffixFactory factory)
-		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).ApplyAffix(item, factory);
-		}
-
-		public static void ApplyAffix<T>(this Item item, string internalName, Action<T> createDelegate) where T : Affix
-		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).ApplyAffix(item, internalName, createDelegate);
-		}
-
-		public static void ApplyAffix<T>(this Item item, AffixFactory factory, Action<T> createDelegate) where T : Affix
-		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).ApplyAffix(item, factory, createDelegate);
-		}
-
 		public static void ApplyAffix(this Item item, Affix affix)
 		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).ApplyAffix(item, affix);
+			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(ModLoader.GetMod("Shockah.Affix"));
+			info.ApplyAffix(item, affix);
 		}
 
 		public static void RemoveAffix(this Item item, Affix affix)
 		{
-			(ModLoader.GetMod("Shockah.Affix") as AffixMod).RemoveAffix(item, affix);
+			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(ModLoader.GetMod("Shockah.Affix"));
+			info.RemoveAffix(item, affix);
+		}
+
+		public static IList<Affix> GetAffixes(this Item item)
+		{
+			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(ModLoader.GetMod("Shockah.Affix"));
+			return info.affixes.AsReadOnly();
 		}
 
 		public static bool CanApplyAffixes(this Item item)
 		{
-			return (ModLoader.GetMod("Shockah.Affix") as AffixMod).CanApplyAffixes(item);
+			return item.damage > 0 && item.maxStack == 1;
 		}
 	}
 }

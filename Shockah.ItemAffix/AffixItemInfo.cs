@@ -17,31 +17,6 @@ namespace Shockah.Affix
 			return clone;
 		}
 
-		public void ApplyAffix(Item item, string internalName)
-		{
-			ApplyAffix<Affix>(item, internalName, null);
-		}
-
-		public void ApplyAffix(Item item, AffixFactory factory)
-		{
-			ApplyAffix<Affix>(item, factory, null);
-		}
-
-		public void ApplyAffix<T>(Item item, string internalName, Action<T> createDelegate) where T : Affix
-		{
-			AffixFactory factory = (mod as AffixMod).GetAffixFactory(internalName);
-			if (factory == null)
-				throw new Exception(string.Format("Unknown AffixFactory '{0}'.", factory.internalName));
-			ApplyAffix(item, factory, createDelegate);
-		}
-
-		public void ApplyAffix<T>(Item item, AffixFactory factory, Action<T> createDelegate) where T : Affix
-		{
-			Affix affix = factory.Create(item, null);
-			createDelegate?.Invoke((T)affix);
-			ApplyAffix(item, affix);
-		}
-
 		public void ApplyAffix(Item item, Affix affix)
 		{
 			affixes.Add(affix);

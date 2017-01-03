@@ -8,7 +8,7 @@ namespace Shockah.Affix
 	{
 		public readonly TagCompound tag;
 
-		public UnloadedAffix(AffixFactory factory, TagCompound tag) : base(factory, "Unloaded Affix")
+		public UnloadedAffix(TagCompound tag) : base("Unloaded Affix")
 		{
 			this.tag = tag;
 		}
@@ -17,23 +17,6 @@ namespace Shockah.Affix
 		public override string GetFormattedName(Item item, string oldName)
 		{
 			return base.GetFormattedName(item, oldName);
-		}
-	}
-
-	public class UnloadedAffixFactory : AffixFactory
-	{
-		public UnloadedAffixFactory(string internalName) : base(internalName)
-		{
-		}
-
-		public override Affix Create(Item item, TagCompound tag)
-		{
-			return new UnloadedAffix(this, tag);
-		}
-
-		public override TagCompound Store(Item item, Affix affix)
-		{
-			return (affix as UnloadedAffix).tag;
 		}
 	}
 }
