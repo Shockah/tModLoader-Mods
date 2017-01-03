@@ -2,15 +2,15 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix.Content
+namespace Shockah.Affix
 {
-	public class AffixContentNPCInfo : NPCInfo
+	public class AffixNPCInfo : NPCInfo
 	{
 		public readonly Dictionary<Player, List<Item>> participants = new Dictionary<Player, List<Item>>();
 
 		public override NPCInfo Clone()
 		{
-			AffixContentNPCInfo clone = new AffixContentNPCInfo();
+			AffixNPCInfo clone = new AffixNPCInfo();
 			foreach (KeyValuePair<Player, List<Item>> kvp in participants)
 			{
 				List<Item> items = new List<Item>();

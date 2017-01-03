@@ -67,25 +67,23 @@
     <Compile Include="UnloadedAffix.cs" />
     <Compile Include="Utils\TagSerializable.cs" />
     <Compile Include="NamedItemAffix.cs" />
-    <Compile Include="Content\HiddenPotentialAffix.cs" />
+    <Compile Include="Content\Hidden Potential\HiddenPotentialAffix.cs" />
     <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="Content\Hooks\AffixContentGlobalNPC.cs" />
-    <Compile Include="Content\Hooks\AffixContentGlobalProjectile.cs" />
-    <Compile Include="Content\Hooks\AffixContentNPCInfo.cs" />
-    <Compile Include="Content\Hooks\AffixContentProjectileInfo.cs" />
-    <Compile Include="Content\HiddenPotentialRequirement.cs" />
-    <Compile Include="Content\HiddenPotentialKillRequirement.cs" />
-    <Compile Include="Content\HiddenPotentialHitRequirement.cs" />
-    <Compile Include="Content\HiddenPotentialIntRequirement.cs" />
-    <Compile Include="Content\WeaponHeldAffix.cs" />
-    <Compile Include="Content\WeaponHeldDefenseAffix.cs" />
-    <Compile Include="Content\Hooks\AffixContentModPlayer.cs" />
-    <Compile Include="Content\WeaponHeldMovementSpeedAffix.cs" />
-    <Compile Include="Content\TestAffixContentGlobalItem.cs" />
+    <Compile Include="AffixGlobalNPC.cs" />
+    <Compile Include="AffixGlobalProjectile.cs" />
+    <Compile Include="AffixNPCInfo.cs" />
+    <Compile Include="AffixProjectileInfo.cs" />
+    <Compile Include="Content\Hidden Potential\HiddenPotentialRequirement.cs" />
+    <Compile Include="Content\Hidden Potential\HiddenPotentialKillRequirement.cs" />
+    <Compile Include="Content\Hidden Potential\HiddenPotentialHitRequirement.cs" />
+    <Compile Include="Content\Hidden Potential\HiddenPotentialIntRequirement.cs" />
+    <Compile Include="Content\Weapon Held\WeaponHeldAffix.cs" />
+    <Compile Include="Content\Weapon Held\WeaponHeldDefenseAffix.cs" />
+    <Compile Include="AffixModPlayer.cs" />
+    <Compile Include="Content\Weapon Held\WeaponHeldMovementSpeedAffix.cs" />
+    <Compile Include="TestAffixContentGlobalItem.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Hooks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

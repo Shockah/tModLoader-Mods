@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Shockah.Affix.Content
 {
-	public class AffixContentModPlayer : ModPlayer
+	public class AffixModPlayer : ModPlayer
 	{
 		public override void PostUpdateEquips()
 		{

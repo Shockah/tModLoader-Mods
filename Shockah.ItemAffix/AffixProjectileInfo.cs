@@ -1,15 +1,15 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix.Content
+namespace Shockah.Affix
 {
-	public class AffixContentProjectileInfo : ProjectileInfo
+	public class AffixProjectileInfo : ProjectileInfo
 	{
 		public Item weapon = null;
 
 		public override ProjectileInfo Clone()
 		{
-			AffixContentProjectileInfo clone = new AffixContentProjectileInfo();
+			AffixProjectileInfo clone = new AffixProjectileInfo();
 			clone.weapon = weapon;
 			return clone;
 		}

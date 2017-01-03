@@ -2,26 +2,27 @@
 using Shockah.Affix.Utils;
 using Terraria;
 using Terraria.ModLoader;
+using Shockah.Affix.Content;
 
-namespace Shockah.Affix.Content
+namespace Shockah.Affix
 {
-	public class AffixContentGlobalNPC : GlobalNPC
+	public class AffixGlobalNPC : GlobalNPC
 	{
 		public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)
 		{
-			npc.GetAffixContentInfo(mod).AddParticipant(player, item);
+			npc.GetAffixInfo(mod).AddParticipant(player, item);
 		}
 
 		public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
 		{
-			AffixContentProjectileInfo projectileInfo = projectile.GetAffixContentInfo(mod);
+			AffixProjectileInfo projectileInfo = projectile.GetAffixInfo(mod);
 			if (projectileInfo.weapon != null)
-				npc.GetAffixContentInfo(mod).AddParticipant(projectile.GetOwner(), projectileInfo.weapon);
+				npc.GetAffixInfo(mod).AddParticipant(projectile.GetOwner(), projectileInfo.weapon);
 		}
 
 		public override void NPCLoot(NPC npc)
 		{
-			foreach (KeyValuePair<Player, List<Item>> kvp in npc.GetAffixContentInfo(mod).participants)
+			foreach (KeyValuePair<Player, List<Item>> kvp in npc.GetAffixInfo(mod).participants)
 			{
 				foreach (Item weapon in kvp.Value)
 				{

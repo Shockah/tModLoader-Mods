@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Shockah.Affix.Utils;
 using Terraria;
 using Terraria.ModLoader;
+using Shockah.Affix.Content;
 
-namespace Shockah.Affix.Content
+namespace Shockah.Affix
 {
 	public class TestAffixContentGlobalItem : GlobalItem
 	{

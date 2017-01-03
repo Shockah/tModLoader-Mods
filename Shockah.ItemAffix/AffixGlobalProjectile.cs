@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix.Content
+namespace Shockah.Affix
 {
-	public class AffixContentGlobalProjectile : GlobalProjectile
+	public class AffixGlobalProjectile : GlobalProjectile
 	{
 		public override void PostAI(Projectile projectile)
 		{
@@ -12,14 +12,14 @@ namespace Shockah.Affix.Content
 			if (player == null)
 				return;
 
-			AffixContentProjectileInfo info = projectile.GetAffixContentInfo(mod);
+			AffixProjectileInfo info = projectile.GetAffixInfo(mod);
 			if (info.weapon == null)
 				info.weapon = player.HeldItem;
 		}
 
 		public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-			AffixContentProjectileInfo info = projectile.GetAffixContentInfo(mod);
+			AffixProjectileInfo info = projectile.GetAffixInfo(mod);
 			if (info.weapon != null)
 				info.weapon.GetAffixInfo(mod)?.OnHitNPC(info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
 		}

@@ -1,5 +1,4 @@
-﻿using Shockah.Affix.Content;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -19,24 +18,24 @@ namespace Shockah.Affix
 			return item.GetModInfo<AffixItemInfo>(mod);
 		}
 
-		internal static AffixContentNPCInfo GetAffixContentInfo(this NPC npc)
+		internal static AffixNPCInfo GetAffixContentInfo(this NPC npc)
 		{
-			return npc.GetAffixContentInfo(ModLoader.GetMod(AffixMod.ModName));
+			return npc.GetAffixInfo(ModLoader.GetMod(AffixMod.ModName));
 		}
 
-		internal static AffixContentNPCInfo GetAffixContentInfo(this NPC npc, Mod mod)
+		internal static AffixNPCInfo GetAffixInfo(this NPC npc, Mod mod)
 		{
-			return npc.GetModInfo<AffixContentNPCInfo>(mod);
+			return npc.GetModInfo<AffixNPCInfo>(mod);
 		}
 
-		internal static AffixContentProjectileInfo GetAffixContentInfo(this Projectile projectile)
+		internal static AffixProjectileInfo GetAffixInfo(this Projectile projectile)
 		{
-			return projectile.GetAffixContentInfo(ModLoader.GetMod(AffixMod.ModName));
+			return projectile.GetAffixInfo(ModLoader.GetMod(AffixMod.ModName));
 		}
 
-		internal static AffixContentProjectileInfo GetAffixContentInfo(this Projectile projectile, Mod mod)
+		internal static AffixProjectileInfo GetAffixInfo(this Projectile projectile, Mod mod)
 		{
-			return projectile.GetModInfo<AffixContentProjectileInfo>(mod);
+			return projectile.GetModInfo<AffixProjectileInfo>(mod);
 		}
 
 		public static void ApplyAffix(this Item item, Affix affix)
