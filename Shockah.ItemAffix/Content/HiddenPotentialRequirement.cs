@@ -13,5 +13,9 @@ namespace Shockah.Affix.Content
 		public virtual void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit, HiddenPotentialAffix affix)
 		{
 		}
+
+		public virtual void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit, HiddenPotentialAffix affix)
+		{
+		}
 	}
 }

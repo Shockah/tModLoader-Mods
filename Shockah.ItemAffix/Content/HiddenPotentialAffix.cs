@@ -51,6 +51,11 @@ namespace Shockah.Affix.Content
 			requirement.OnHitNPC(item, player, target, damage, knockBack, crit, this);
 		}
 
+		public override void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		{
+			requirement.OnHitNPC(item, player, projectile, target, damage, knockBack, crit, this);
+		}
+
 		public void OnRequirementDone(Item item)
 		{
 			item.RemoveAffix(this);

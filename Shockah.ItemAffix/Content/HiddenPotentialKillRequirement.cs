@@ -1,6 +1,5 @@
 ﻿using Shockah.Affix.Utils;
 using Terraria;
-using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix.Content
 {

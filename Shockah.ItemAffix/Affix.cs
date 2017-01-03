@@ -33,6 +33,10 @@ namespace Shockah.Affix
 		{
 		}
 
+		public virtual void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		{
+		}
+
 		public virtual void UpdateEquip(Item item, Player player)
 		{
 		}

@@ -65,5 +65,10 @@ namespace Shockah.Affix.Content
 		{
 			target.AddBuff(buffType, buffTime);
 		}
+
+		public override void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		{
+			OnHitNPC(item, player, target, damage, knockBack, crit);
+		}
 	}
 }

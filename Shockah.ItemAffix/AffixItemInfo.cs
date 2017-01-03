@@ -53,6 +53,14 @@ namespace Shockah.Affix
 			}
 		}
 
+		public void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		{
+			foreach (var method in Hooks.Build<Affix, Action<Item, Player, Projectile, NPC, int, float, bool>>(affixes, o => o.OnHitNPC))
+			{
+				method(item, player, projectile, target, damage, knockBack, crit);
+			}
+		}
+
 		public void UpdateEquip(Item item, Player player)
 		{
 			foreach (var method in Hooks.Build<Affix, Action<Item, Player>>(affixes, o => o.UpdateEquip))

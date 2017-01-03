@@ -1,6 +1,5 @@
 ﻿using Shockah.Affix.Utils;
 using Terraria;
-using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix.Content
 {
@@ -23,6 +22,11 @@ namespace Shockah.Affix.Content
 		}
 
 		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit, HiddenPotentialAffix affix)
+		{
+			Progress(1, item, affix);
+		}
+
+		public override void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit, HiddenPotentialAffix affix)
 		{
 			Progress(1, item, affix);
 		}
