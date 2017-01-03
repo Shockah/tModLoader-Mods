@@ -20,7 +20,7 @@ namespace Shockah.Affix
 			TagCompound tag = new TagCompound();
 
 			if (info.affixes.Count != 0)
-				tag["affixes"] = info.affixes.Select(affix => TagSerializables.Serialize(affix)).ToList();
+				tag["affixes"] = info.affixes.Select(affix => (mod as AffixMod).Serialize(affix)).ToList();
 
 			return tag;
 		}
@@ -28,7 +28,7 @@ namespace Shockah.Affix
 		public override void Load(Item item, TagCompound tag)
 		{
 			if (tag.HasTag("affixes"))
-				item.GetAffixInfo(mod).affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => TagSerializables.Deserialize<Affix>(affixTag)));
+				item.GetAffixInfo(mod).affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => (mod as AffixMod).Deserialize(affixTag)));
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
