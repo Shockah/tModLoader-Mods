@@ -9,24 +9,19 @@ namespace Shockah.Affix.Content
 	{
 		public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)
 		{
-			AffixContentNPCInfo info = npc.GetModInfo<AffixContentNPCInfo>(mod);
-			info.AddParticipant(player, item);
+			npc.GetAffixContentInfo(mod).AddParticipant(player, item);
 		}
 
 		public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
 		{
-			AffixContentProjectileInfo projectileInfo = projectile.GetModInfo<AffixContentProjectileInfo>(mod);
-			if (projectileInfo.weapon == null)
-				return;
-
-			AffixContentNPCInfo info = npc.GetModInfo<AffixContentNPCInfo>(mod);
-			info.AddParticipant(projectile.GetOwner(), projectileInfo.weapon);
+			AffixContentProjectileInfo projectileInfo = projectile.GetAffixContentInfo(mod);
+			if (projectileInfo.weapon != null)
+				npc.GetAffixContentInfo(mod).AddParticipant(projectile.GetOwner(), projectileInfo.weapon);
 		}
 
 		public override void NPCLoot(NPC npc)
 		{
-			AffixContentNPCInfo info = npc.GetModInfo<AffixContentNPCInfo>(mod);
-			foreach (KeyValuePair<Player, List<Item>> kvp in info.participants)
+			foreach (KeyValuePair<Player, List<Item>> kvp in npc.GetAffixContentInfo(mod).participants)
 			{
 				foreach (Item weapon in kvp.Value)
 				{

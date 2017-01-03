@@ -1,14 +1,15 @@
-using Shockah.Affix.Content;
+using Shockah.Affix.Utils;
 using System;
-using System.Collections.Generic;
-using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix
 {
 	public class AffixMod : Mod
 	{
-		public override string Name => "Shockah.Affix";
+		public const string ModName = "Shockah.ItemAffix";
+
+		public override string Name => ModName;
 
 		public AffixMod()
 		{
@@ -18,6 +19,36 @@ namespace Shockah.Affix
                 AutoloadGores = true,
                 AutoloadSounds = true
 			};
+		}
+
+		public Affix Deserialize(TagCompound tag)
+		{
+			try
+			{
+				return TagSerializables.Deserialize<Affix>(tag);
+			}
+			catch (TypeUnloadedException)
+			{
+				TagCompound dataTag = tag.HasTag("data") ? tag.GetCompound("data") : null;
+				return new UnloadedAffix(tag.GetString("type"), dataTag);
+			}
+		}
+
+		public TagCompound Serialize(Affix affix)
+		{
+			UnloadedAffix unloadedAffix = affix as UnloadedAffix;
+			if (unloadedAffix == null)
+			{
+				return TagSerializables.Serialize(affix);
+			}
+			else
+			{
+				TagCompound tag = new TagCompound();
+				tag["type"] = unloadedAffix.typeName;
+				if (unloadedAffix.tag != null)
+					tag["data"] = unloadedAffix.tag;
+				return tag;
+			}
 		}
 	}
 }

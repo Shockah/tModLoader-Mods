@@ -11,7 +11,7 @@ namespace Shockah.Affix.Content
 			Player player = projectile.GetOwner();
 			if (player != null)
 			{
-				AffixContentProjectileInfo info = projectile.GetModInfo<AffixContentProjectileInfo>(mod);
+				AffixContentProjectileInfo info = projectile.GetAffixContentInfo(mod);
 				if (info.weapon == null)
 					info.weapon = player.HeldItem;
 			}

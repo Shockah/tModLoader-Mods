@@ -45,6 +45,9 @@ namespace Shockah.Affix.Utils
 				return default(T);
 
 			Type type = GetType(tag.GetString("type"));
+			if (type == null)
+				throw new TypeUnloadedException();
+
 			FieldInfo deserializerField = type.GetField("DESERIALIZER");
 			if (deserializerField == null)
 				throw new Exception(string.Format("Missing deserializer for type {0}.", type.FullName));

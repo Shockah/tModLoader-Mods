@@ -16,7 +16,7 @@ namespace Shockah.Affix
 
 		public override TagCompound Save(Item item)
 		{
-			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
+			AffixItemInfo info = item.GetAffixInfo(mod);
 			TagCompound tag = new TagCompound();
 
 			if (info.affixes.Count != 0)
@@ -28,15 +28,12 @@ namespace Shockah.Affix
 		public override void Load(Item item, TagCompound tag)
 		{
 			if (tag.HasTag("affixes"))
-			{
-				AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
-				info.affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => TagSerializables.Deserialize<Affix>(affixTag)));
-			}
+				item.GetAffixInfo(mod).affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => TagSerializables.Deserialize<Affix>(affixTag)));
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
+			AffixItemInfo info = item.GetAffixInfo(mod);
 
 			TooltipLine nameLine = tooltips.Find(line => line.Name == "ItemName");
 			if (nameLine != null)
@@ -47,14 +44,12 @@ namespace Shockah.Affix
 
 		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
-			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
-			info.OnHitNPC(item, player, target, damage, knockBack, crit);
+			item.GetAffixInfo(mod).OnHitNPC(item, player, target, damage, knockBack, crit);
 		}
 
 		public override void UpdateEquip(Item item, Player player)
 		{
-			AffixItemInfo info = item.GetModInfo<AffixItemInfo>(mod);
-			info.UpdateEquip(item, player);
+			item.GetAffixInfo(mod).UpdateEquip(item, player);
 		}
 	}
 }
