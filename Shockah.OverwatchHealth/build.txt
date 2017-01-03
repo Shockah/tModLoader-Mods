@@ -1,0 +1,3 @@
+author = Shockah
+version = 0.1
+displayName = Overwatch Health Display

@@ -1,0 +1,5 @@
+author = Shockah
+version = 0.1
+displayName = Affix System
+languageVersion = 6
+includePDB = true
