@@ -69,7 +69,6 @@
     <Compile Include="NamedItemAffix.cs" />
     <Compile Include="Content\HiddenPotentialAffix.cs" />
     <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="Content\Hooks\TestAffixContentGlobalItem.cs" />
     <Compile Include="Content\Hooks\AffixContentGlobalNPC.cs" />
     <Compile Include="Content\Hooks\AffixContentGlobalProjectile.cs" />
     <Compile Include="Content\Hooks\AffixContentNPCInfo.cs" />
@@ -81,9 +80,10 @@
     <Compile Include="Content\WeaponHeldAffix.cs" />
     <Compile Include="Content\WeaponHeldDefenseAffix.cs" />
     <Compile Include="Content\Hooks\AffixContentModPlayer.cs" />
+    <Compile Include="Content\WeaponHeldMovementSpeedAffix.cs" />
+    <Compile Include="Content\TestAffixContentGlobalItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
     <Folder Include="Content\Hooks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

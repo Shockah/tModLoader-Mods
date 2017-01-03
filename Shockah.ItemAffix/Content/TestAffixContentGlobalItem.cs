@@ -20,14 +20,23 @@ namespace Shockah.Affix.Content
 			affixes.Add(OnHitBuffAffix.Poisoned());
 			affixes.Add((Func<Affix>)(() =>
 			{
-				List<Affix> subaffixes = new List<Affix>()
-				{
+				Affix[] subaffixes = {
 					WeaponHeldDefenseAffix.Defense3,
 					WeaponHeldDefenseAffix.Defense6,
 					WeaponHeldDefenseAffix.Defense9,
 					WeaponHeldDefenseAffix.Defense12
 				};
-				return subaffixes[rand.Next(subaffixes.Count)];
+				return subaffixes[rand.Next(subaffixes.Length)];
+			}));
+			affixes.Add((Func<Affix>)(() =>
+			{
+				Affix[] subaffixes = {
+					WeaponHeldMovementSpeedAffix.MoveSpeed5,
+					WeaponHeldMovementSpeedAffix.MoveSpeed10,
+					WeaponHeldMovementSpeedAffix.MoveSpeed15,
+					WeaponHeldMovementSpeedAffix.MoveSpeed20
+				};
+				return subaffixes[rand.Next(subaffixes.Length)];
 			}));
 
 			foreach (Affix affix in affixes)
