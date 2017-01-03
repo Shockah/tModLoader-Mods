@@ -10,7 +10,7 @@ namespace Shockah.Affix.Utils
 			get;
 		}
 
-		public virtual TagCompound SerializeData()
+		public virtual void SerializeData(TagCompound tag)
 		{
 			throw new NotImplementedException();
 		}
@@ -47,11 +47,9 @@ namespace Shockah.Affix.Utils
 			this.value = value;
 		}
 
-		public override TagCompound SerializeData()
+		public override void SerializeData(TagCompound tag)
 		{
-			TagCompound tag = new TagCompound();
 			tag["value"] = value;
-			return tag;
 		}
 	}
 
@@ -89,12 +87,10 @@ namespace Shockah.Affix.Utils
 			return new DynamicIntRange(range);
 		}
 
-		public override TagCompound SerializeData()
+		public override void SerializeData(TagCompound tag)
 		{
-			TagCompound tag = new TagCompound();
 			tag["a"] = range.Item1;
 			tag["b"] = range.Item2;
-			return tag;
 		}
 	}
 }

@@ -32,8 +32,8 @@ namespace Shockah.Affix.Content
 
 		public void Progress(int progress, Item item, HiddenPotentialAffix affix)
 		{
-			progress++;
-			if (progress >= required)
+			this.progress += progress;
+			if (this.progress >= required)
 				affix.OnRequirementDone(item);
 		}
 	}

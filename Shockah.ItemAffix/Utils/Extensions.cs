@@ -7,7 +7,7 @@ namespace Shockah.Affix.Utils
 	{
 		public static Player GetOwner(this Projectile self)
 		{
-			return self.owner >= 0 ? Main.player[self.owner] : null;
+			return self.owner < Main.player.Length - 1 && !self.trap && !self.npcProj ? Main.player[self.owner] : null;
 		}
 
 		public static T As<T>(this object obj, Action<T> @delegate = null) where T : class

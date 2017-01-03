@@ -37,11 +37,11 @@ namespace Shockah.Affix.Content
 		{
 			TooltipLine line;
 
-			line = new TooltipLine(ModLoader.GetMod("Shockah.Affix"), string.Format("{0}.Title", GetType().FullName), string.Format("Hidden Potential: {0}", hiddenAffix.name));
+			line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), string.Format("{0}.Title", GetType().FullName), string.Format("Hidden Potential: {0}", hiddenAffix.name));
 			line.overrideColor = new Color(1.0f, 0.5f, 0.0f);
 			tooltips.Add(line);
 
-			line = new TooltipLine(ModLoader.GetMod("Shockah.Affix"), string.Format("{0}.Requirements", GetType().FullName), requirement.GetTooltip(item, this));
+			line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), string.Format("{0}.Requirements", GetType().FullName), requirement.GetTooltip(item, this));
 			line.overrideColor = new Color(1.0f, 0.5f, 0.0f);
 			tooltips.Add(line);
 		}

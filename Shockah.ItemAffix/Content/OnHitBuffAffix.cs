@@ -55,7 +55,7 @@ namespace Shockah.Affix.Content
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod("Shockah.Affix"), GetType().FullName, tooltip);
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, tooltip);
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);

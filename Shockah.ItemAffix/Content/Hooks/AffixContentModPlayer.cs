@@ -15,7 +15,7 @@ namespace Shockah.Affix.Content
 			{
 				WeaponHeldAffix weaponHeldAffix = affix as WeaponHeldAffix;
 				if (weaponHeldAffix != null)
-					weaponHeldAffix.UpdateEquip(heldItem, player);
+					weaponHeldAffix.UpdateWeaponHeld(heldItem, player);
 			}
 		}
 	}

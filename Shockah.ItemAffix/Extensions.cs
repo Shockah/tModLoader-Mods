@@ -14,6 +14,8 @@ namespace Shockah.Affix
 
 		internal static AffixItemInfo GetAffixInfo(this Item item, Mod mod)
 		{
+			if (item.netID == 0 || item.stack == 0)
+				return null;
 			return item.GetModInfo<AffixItemInfo>(mod);
 		}
 
@@ -39,17 +41,20 @@ namespace Shockah.Affix
 
 		public static void ApplyAffix(this Item item, Affix affix)
 		{
-			item.GetAffixInfo().ApplyAffix(item, affix);
+			item.GetAffixInfo()?.ApplyAffix(item, affix);
 		}
 
 		public static void RemoveAffix(this Item item, Affix affix)
 		{
-			item.GetAffixInfo().RemoveAffix(item, affix);
+			item.GetAffixInfo()?.RemoveAffix(item, affix);
 		}
 
 		public static IList<Affix> GetAffixes(this Item item)
 		{
-			return item.GetAffixInfo().affixes.AsReadOnly();
+			AffixItemInfo info = item.GetAffixInfo();
+			if (info == null)
+				return new List<Affix>().AsReadOnly();
+			return info.affixes.AsReadOnly();
 		}
 
 		public static bool CanApplyAffixes(this Item item)

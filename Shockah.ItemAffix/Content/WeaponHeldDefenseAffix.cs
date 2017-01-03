@@ -1,5 +1,7 @@
 ﻿using Shockah.Affix.Utils;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Shockah.Affix.Content
@@ -30,6 +32,14 @@ namespace Shockah.Affix.Content
 		{
 			base.SerializeData(tag);
 			tag["defense"] = defense;
+		}
+
+		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+		{
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("+{0} defense while held", defense));
+			line.isModifier = true;
+			line.isModifierBad = false;
+			tooltips.Add(line);
 		}
 
 		public override void UpdateWeaponHeld(Item item, Player player)
