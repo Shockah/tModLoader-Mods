@@ -17,5 +17,20 @@ namespace Shockah.Affix.Utils
 				@delegate(t);
 			return t;
 		}
+
+		public static bool Between(this int self, int a, int b)
+		{
+			return self >= Math.Min(a, b) && self <= Math.Max(a, b);
+		}
+
+		public static bool Between(this float self, float a, float b)
+		{
+			return self >= Math.Min(a, b) && self <= Math.Max(a, b);
+		}
+
+		public static bool Between(this double self, double a, double b)
+		{
+			return self >= Math.Min(a, b) && self <= Math.Max(a, b);
+		}
 	}
 }

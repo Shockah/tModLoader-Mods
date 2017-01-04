@@ -10,7 +10,7 @@ namespace Shockah.Affix
 	{
 		public readonly string name;
 
-		public Affix(string name)
+		protected Affix(string name)
 		{
 			this.name = name;
 		}
@@ -40,5 +40,15 @@ namespace Shockah.Affix
 		public virtual void UpdateEquip(Item item, Player player)
 		{
 		}
+	}
+
+	public interface GeneratedAffix
+	{
+		Affix Affix
+		{
+			get;
+		}
+
+		float GetAffixScore();
 	}
 }

@@ -17,19 +17,11 @@ namespace Shockah.Affix
 			Random rand = new Random();
 			List<Dynamic<Affix>> affixes = new List<Dynamic<Affix>>();
 
-			affixes.Add(OnHitBuffAffix.Fiery());
-			affixes.Add(OnHitBuffAffix.Poisoned());
-			affixes.Add((Func<Affix>)(() =>
-			{
-				Affix[] subaffixes = {
-					WeaponHeldDefenseAffix.Defense3,
-					WeaponHeldDefenseAffix.Defense6,
-					WeaponHeldDefenseAffix.Defense9,
-					WeaponHeldDefenseAffix.Defense12
-				};
-				return subaffixes[rand.Next(subaffixes.Length)];
-			}));
-			affixes.Add((Func<Affix>)(() =>
+			affixes.Add(OnHitBuffAffix.CreateFiery());
+			affixes.Add(OnHitBuffAffix.CreatePoisoned());
+			affixes.Add(new WeaponHeldDefenseAffix(rand.Next(1, 13)));
+			affixes.Add(new WeaponHeldMovementSpeedAffix((float)(rand.NextDouble() * 0.19 + 0.01)));
+			/*affixes.Add((Func<Affix>)(() =>
 			{
 				Affix[] subaffixes = {
 					WeaponHeldMovementSpeedAffix.MoveSpeed5,
@@ -38,7 +30,7 @@ namespace Shockah.Affix
 					WeaponHeldMovementSpeedAffix.MoveSpeed20
 				};
 				return subaffixes[rand.Next(subaffixes.Length)];
-			}));
+			}));*/
 
 			foreach (Affix affix in affixes)
 			{

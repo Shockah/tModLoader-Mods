@@ -14,9 +14,6 @@ namespace Shockah.Affix.Content
 		public readonly Dynamic<int> buffTime;
 		public readonly string tooltip;
 
-		public static readonly Func<OnHitBuffAffix> Fiery = () => new OnHitBuffAffix("Fiery", BuffID.OnFire, 60 * 5, "Puts enemies on fire");
-		public static readonly Func<OnHitBuffAffix> Poisoned = () => new OnHitBuffAffix("Poisoned", BuffID.Poisoned, 60 * 5, "Poisons enemies");
-
 		public static readonly TagDeserializer<OnHitBuffAffix> DESERIALIZER = new TagDeserializer<OnHitBuffAffix>(tag =>
 		{
 			return new OnHitBuffAffix(
@@ -26,6 +23,16 @@ namespace Shockah.Affix.Content
 				tag.GetString("tooltip")
 			);
 		});
+
+		public static OnHitBuffAffix CreateFiery()
+		{
+			return new OnHitBuffAffix("Fiery", BuffID.OnFire, 60 * 5, "Puts enemies on fire");
+		}
+
+		public static OnHitBuffAffix CreatePoisoned()
+		{
+			return new OnHitBuffAffix("Poisoned", BuffID.Poisoned, 60 * 5, "Poisons enemies");
+		}
 
 		public OnHitBuffAffix(string name, int buffType, Dynamic<int> buffTime, string tooltip) : this(name, true, buffType, buffTime, tooltip)
 		{

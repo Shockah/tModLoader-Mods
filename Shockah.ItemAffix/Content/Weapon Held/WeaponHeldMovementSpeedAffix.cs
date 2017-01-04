@@ -3,34 +3,46 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.Affix.Content
 {
 	public class WeaponHeldMovementSpeedAffix : WeaponHeldAffix
 	{
+		public static readonly List<Tuple<float, string>> affixNames = new List<Tuple<float, string>>
+		{
+			new Tuple<float, string>(0.15f, "Quick"),
+			new Tuple<float, string>(0.10f, "Hasty"),
+			new Tuple<float, string>(0.05f, "Fleeting"),
+			new Tuple<float, string>(0.00f, "Brisk")
+		};
+
 		public readonly float movementSpeed;
 
-		public static readonly WeaponHeldMovementSpeedAffix MoveSpeed5 = new WeaponHeldMovementSpeedAffix("Brisk", 0.05f);
-		public static readonly WeaponHeldMovementSpeedAffix MoveSpeed10 = new WeaponHeldMovementSpeedAffix("Fleeting", 0.1f);
-		public static readonly WeaponHeldMovementSpeedAffix MoveSpeed15 = new WeaponHeldMovementSpeedAffix("Hasty", 0.15f);
-		public static readonly WeaponHeldMovementSpeedAffix MoveSpeed20 = new WeaponHeldMovementSpeedAffix("Quick", 0.2f);
+		private static string GetNameForMovementSpeedValue(float movementSpeed)
+		{
+			foreach (Tuple<float, string> tuple in affixNames)
+			{
+				if (movementSpeed > tuple.Item1)
+					return tuple.Item2;
+			}
+			return null;
+		}
 
 		public static readonly TagDeserializer<WeaponHeldMovementSpeedAffix> DESERIALIZER = new TagDeserializer<WeaponHeldMovementSpeedAffix>(tag =>
 		{
 			return new WeaponHeldMovementSpeedAffix(
-				tag.GetString("name"),
 				tag.GetFloat("movementSpeed")
 			);
 		});
 
-		public WeaponHeldMovementSpeedAffix(string name, float movementSpeed) : base(name)
+		public WeaponHeldMovementSpeedAffix(float movementSpeed) : base(GetNameForMovementSpeedValue(movementSpeed))
 		{
 			this.movementSpeed = movementSpeed;
 		}
 
 		public override void SerializeData(TagCompound tag)
 		{
-			base.SerializeData(tag);
 			tag["movementSpeed"] = movementSpeed;
 		}
 

@@ -19,16 +19,6 @@ namespace Shockah.Affix.Utils
 		{
 			return self.Value;
 		}
-
-		public static implicit operator Dynamic<T>(T value)
-		{
-			return new DynamicValue<T>(value);
-		}
-
-		public static implicit operator Dynamic<T>(Func<T> @delegate)
-		{
-			return new DynamicDelegate<T>(@delegate);
-		}
 	}
 
 	public class DynamicValue<T> : Dynamic<T>
@@ -51,6 +41,11 @@ namespace Shockah.Affix.Utils
 		{
 			tag["value"] = value;
 		}
+
+		public static implicit operator DynamicValue<T>(T value)
+		{
+			return new DynamicValue<T>(value);
+		}
 	}
 
 	public class DynamicDelegate<T> : Dynamic<T>
@@ -62,6 +57,11 @@ namespace Shockah.Affix.Utils
 		public DynamicDelegate(Func<T> @delegate)
 		{
 			this.@delegate = @delegate;
+		}
+
+		public static implicit operator DynamicDelegate<T>(Func<T> @delegate)
+		{
+			return new DynamicDelegate<T>(@delegate);
 		}
 	}
 
@@ -82,15 +82,15 @@ namespace Shockah.Affix.Utils
 			this.random = random ?? new Random();
 		}
 
-		public static implicit operator DynamicIntRange(Tuple<int, int> range)
-		{
-			return new DynamicIntRange(range);
-		}
-
 		public override void SerializeData(TagCompound tag)
 		{
 			tag["a"] = range.Item1;
 			tag["b"] = range.Item2;
+		}
+
+		public static implicit operator DynamicIntRange(Tuple<int, int> range)
+		{
+			return new DynamicIntRange(range);
 		}
 	}
 }
