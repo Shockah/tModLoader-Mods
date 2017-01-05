@@ -85,6 +85,7 @@
     <Compile Include="Content\Generator\AffixGenerator.cs" />
     <Compile Include="Content\Generator\AffixWorldGenChestGenerator.cs" />
     <Compile Include="Content\Generator\AffixGeneratorEnvironment.cs" />
+    <Compile Include="Utils\WeightedRandom.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

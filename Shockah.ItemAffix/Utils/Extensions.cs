@@ -10,11 +10,17 @@ namespace Shockah.Affix.Utils
 			return self.owner < Main.player.Length - 1 && !self.trap && !self.npcProj ? Main.player[self.owner] : null;
 		}
 
-		public static T As<T>(this object obj, Action<T> @delegate = null) where T : class
+		public static T As<O, T>(this O obj, Action<T> @delegate = null, Action<O> elseDelegate = null) where O : class where T : class
 		{
 			T t = obj as T;
-			if (t != null && @delegate != null)
-				@delegate(t);
+			if (t != null)
+			{
+				@delegate?.Invoke(t);
+			}
+			else
+			{
+				@elseDelegate?.Invoke(obj);
+			}
 			return t;
 		}
 
