@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix.Utils
+namespace Shockah.ItemAffix.Utils
 {
 	public abstract class Dynamic<T> : TagSerializable
 	{

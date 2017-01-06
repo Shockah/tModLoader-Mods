@@ -1,8 +1,8 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public class AffixGlobalProjectile : GlobalProjectile
 	{

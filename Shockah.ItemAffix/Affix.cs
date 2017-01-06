@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Shockah.Affix.Utils;
+using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public abstract class Affix : TagSerializable
 	{
@@ -40,15 +40,5 @@ namespace Shockah.Affix
 		public virtual void UpdateEquip(Item item, Player player)
 		{
 		}
-	}
-
-	public interface GeneratedAffix
-	{
-		Affix Affix
-		{
-			get;
-		}
-
-		float GetAffixScore();
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public abstract class WeaponHeldAffix : NamedItemAffix
 	{

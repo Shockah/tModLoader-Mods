@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Shockah.Affix.Utils;
+using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	class AffixGlobalItem : GlobalItem
 	{

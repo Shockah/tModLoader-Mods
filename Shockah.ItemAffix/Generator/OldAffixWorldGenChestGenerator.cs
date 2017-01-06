@@ -1,11 +1,11 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using Shockah.Affix.Utils;
 using Terraria;
 
 namespace Shockah.Affix.Content
 {
-	public class AffixWorldGenChestGenerator : AffixGenerator<AffixWorldGenChestEnvironment>
+	public class OldAffixWorldGenChestGenerator : OldAffixGenerator<OldAffixWorldGenChestEnvironment>
 	{
 		public readonly Dictionary<ChestType, Dynamic<float>> totalScores = new Dictionary<ChestType, Dynamic<float>>
 		{
@@ -13,7 +13,7 @@ namespace Shockah.Affix.Content
 			{ ChestType.GoldLocked, (Func<float>)(() => 2.5f + (float)(Math.Pow(Main.rand.NextDouble(), 2) * 5.0f)) }
 		};
 
-		public readonly Dictionary<ChestType, Func<AffixWorldGenChestEnvironment, float>> totalScoresForEnvironment = new Dictionary<ChestType, Func<AffixWorldGenChestEnvironment, float>>
+		public readonly Dictionary<ChestType, Func<OldAffixWorldGenChestEnvironment, float>> totalScoresForEnvironment = new Dictionary<ChestType, Func<OldAffixWorldGenChestEnvironment, float>>
 		{
 			{ ChestType.Gold, environment =>
 				{
@@ -25,9 +25,9 @@ namespace Shockah.Affix.Content
 				} }
 		};
 
-		public readonly Dictionary<ChestType, Dynamic<GeneratedAffix>> chestAffixes = new Dictionary<ChestType, Dynamic<GeneratedAffix>>();
+		public readonly Dictionary<ChestType, Dynamic<ScoredAffix>> chestAffixes = new Dictionary<ChestType, Dynamic<ScoredAffix>>();
 
-		public override float GetTotalScore(Item item, AffixWorldGenChestEnvironment environment)
+		public override float GetTotalScore(Item item, OldAffixWorldGenChestEnvironment environment)
 		{
 			if (totalScores.ContainsKey(environment.ChestType))
 				return totalScores[environment.ChestType];
@@ -36,13 +36,13 @@ namespace Shockah.Affix.Content
 			return 0f;
 		}
 
-		public override List<Affix> GenerateAffixes(Item item, AffixWorldGenChestEnvironment environment)
+		public override List<Affix> GenerateAffixes(Item item, OldAffixWorldGenChestEnvironment environment)
 		{
 			throw new NotImplementedException();
 		}
 	}
 
-	public class AffixWorldGenChestEnvironment : AffixGeneratorEnvironment
+	public class OldAffixWorldGenChestEnvironment : OldAffixGeneratorEnvironment
 	{
 		public readonly int x;
 		public readonly int y;
@@ -55,7 +55,7 @@ namespace Shockah.Affix.Content
 			}
 		}
 
-		public AffixWorldGenChestEnvironment(int x, int y)
+		public OldAffixWorldGenChestEnvironment(int x, int y)
 		{
 			this.x = x;
 			this.y = y;
@@ -77,4 +77,4 @@ namespace Shockah.Affix.Content
 		Granite, Marble,
 		Count
 	}
-}
+}*/

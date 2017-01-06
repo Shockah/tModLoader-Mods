@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix.Utils
+namespace Shockah.ItemAffix.Utils
 {
 	public interface TagSerializable
 	{

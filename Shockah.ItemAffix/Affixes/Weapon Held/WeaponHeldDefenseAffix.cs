@@ -1,11 +1,11 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using System;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public class WeaponHeldDefenseAffix : WeaponHeldAffix
 	{

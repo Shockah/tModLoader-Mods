@@ -1,12 +1,11 @@
-﻿using Shockah.Affix.Utils;
-using System;
+﻿using Shockah.ItemAffix.Utils;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public class OnHitBuffAffix : NamedItemAffix
 	{

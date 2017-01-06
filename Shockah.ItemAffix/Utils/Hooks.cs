@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Shockah.Affix.Utils
+namespace Shockah.ItemAffix.Utils
 {
 	public static class Hooks
 	{

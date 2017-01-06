@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Shockah.Affix.Utils;
+using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
-using Shockah.Affix.Content;
+using Shockah.ItemAffix.Content;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public class AffixGlobalNPC : GlobalNPC
 	{

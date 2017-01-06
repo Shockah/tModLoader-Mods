@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public class AffixModPlayer : ModPlayer
 	{

@@ -1,11 +1,11 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public class AffixItemInfo : ItemInfo
 	{

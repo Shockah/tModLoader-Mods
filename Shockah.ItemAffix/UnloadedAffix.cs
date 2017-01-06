@@ -1,9 +1,9 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public sealed class UnloadedAffix : Affix
 	{

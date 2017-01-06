@@ -1,8 +1,8 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public abstract class HiddenPotentialRequirement : TagSerializable
 	{

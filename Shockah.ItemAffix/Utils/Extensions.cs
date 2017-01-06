@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria;
 
-namespace Shockah.Affix.Utils
+namespace Shockah.ItemAffix.Utils
 {
 	public static class Extensions
 	{

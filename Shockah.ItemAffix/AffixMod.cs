@@ -1,9 +1,9 @@
-using Shockah.Affix.Utils;
+using Shockah.ItemAffix.Utils;
 using System;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public class AffixMod : Mod
 	{

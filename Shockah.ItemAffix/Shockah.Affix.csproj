@@ -65,6 +65,8 @@
     <Compile Include="Utils\Dynamic.cs" />
     <Compile Include="Utils\Hooks.cs" />
     <Compile Include="UnloadedAffix.cs" />
+    <Compile Include="Utils\Rule.cs" />
+    <Compile Include="Utils\RuleManager.cs" />
     <Compile Include="Utils\TagSerializable.cs" />
     <Compile Include="NamedItemAffix.cs" />
     <Compile Include="Content\Hidden Potential\HiddenPotentialAffix.cs" />
@@ -88,9 +90,7 @@
     <Compile Include="Utils\WeightedRandom.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Content\Generator\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

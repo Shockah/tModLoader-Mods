@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Shockah.Affix
+namespace Shockah.ItemAffix
 {
 	public class AffixNPCInfo : NPCInfo
 	{

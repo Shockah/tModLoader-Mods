@@ -1,7 +1,7 @@
-﻿using Shockah.Affix.Utils;
+﻿using Shockah.ItemAffix.Utils;
 using Terraria;
 
-namespace Shockah.Affix.Content
+namespace Shockah.ItemAffix.Content
 {
 	public class HiddenPotentialKillRequirement : HiddenPotentialIntRequirement
 	{
