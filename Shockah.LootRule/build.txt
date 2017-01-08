@@ -1,0 +1,6 @@
+author = Shockah
+version = 0.1
+displayName = NPC Loot Rule System
+languageVersion = 6
+includePDB = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

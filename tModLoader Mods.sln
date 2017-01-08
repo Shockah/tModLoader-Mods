@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.OverwatchHealth", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.ItemAffix", "Shockah.ItemAffix\Shockah.ItemAffix.csproj", "{F42F0562-13AC-47A3-BB02-AD6AB263445D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.LootRule", "Shockah.LootRule\Shockah.LootRule.csproj", "{ACA307D8-3455-4BD9-BA23-8666F7D9A233}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.Utils", "Shockah.Utils\Shockah.Utils.csproj", "{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}"
 EndProject
 Global
@@ -33,6 +35,14 @@ Global
 		{F42F0562-13AC-47A3-BB02-AD6AB263445D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F42F0562-13AC-47A3-BB02-AD6AB263445D}.Release|x86.ActiveCfg = Release|Any CPU
 		{F42F0562-13AC-47A3-BB02-AD6AB263445D}.Release|x86.Build.0 = Release|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Debug|x86.Build.0 = Debug|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACA307D8-3455-4BD9-BA23-8666F7D9A233}.Release|x86.Build.0 = Release|Any CPU
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.Debug|x86.ActiveCfg = Debug|Any CPU
