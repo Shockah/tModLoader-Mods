@@ -28,18 +28,18 @@ namespace Shockah.ItemAffix.Generator
 			chestGenerators.Add(chestGenerator = surfaceChestGenerator = new ChestAffixGeneratorDelegate(
 				env => new ChestType[] { ChestType.Wooden, ChestType.LivingWood }.Contains(env.ChestType)
 			));
-			chestGenerator.rule.WithCount(() => 1 + (int)Math.Sqrt(Main.rand.NextDouble() * 5.5));
+			chestGenerator.rule.WithCount(() => (int)(0.5 + Math.Pow(Main.rand.NextDouble(), 2) * 2.0));
 			chestGenerator.rule.With(
 				WeightRule.Of(
 					weight: 1.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreateFiery
+						(input, random) => OnHitBuffAffix.CreateFiery(0.3f + random.NextFloat() * 0.2f)
 					)
 				),
 				WeightRule.Of(
 					weight: 1.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreatePoisoned
+						(input, random) => OnHitBuffAffix.CreatePoisoned(0.3f + random.NextFloat() * 0.2f)
 					)
 				),
 				WeightRule.Of(
@@ -61,18 +61,18 @@ namespace Shockah.ItemAffix.Generator
 			chestGenerators.Add(chestGenerator = undergroundChestGenerator = new ChestAffixGeneratorDelegate(
 				env => belowSurface.Contains(env.ChestType) && env.y.Between((int)Main.worldSurface, (int)Main.rockLayer)
 			));
-			chestGenerator.rule.WithCount((Func<int>)(() => 1 + (int)Math.Sqrt(Main.rand.NextDouble() * 12)));
+			chestGenerator.rule.WithCount(() => (int)(0.75 + Math.Pow(Main.rand.NextDouble(), 2) * 2.75));
 			chestGenerator.rule.With(
 				WeightRule.Of(
 					weight: 1.2,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreateFiery
+						(input, random) => OnHitBuffAffix.CreateFiery(0.4f + random.NextFloat() * 0.2f)
 					)
 				),
 				WeightRule.Of(
 					weight: 1.2,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreatePoisoned
+						(input, random) => OnHitBuffAffix.CreatePoisoned(0.4f + random.NextFloat() * 0.2f)
 					)
 				),
 				WeightRule.Of(
@@ -86,6 +86,12 @@ namespace Shockah.ItemAffix.Generator
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new WeaponHeldMovementSpeedAffix(0.05f + random.NextFloat() * 0.10f)
 					)
+				),
+				WeightRule.Of(
+					weight: 7.0,
+					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+						(input, random) => new CriticalDamageAffix(0.4f + random.NextFloat() * 0.2f)
+					)
 				)
 			);
 			#endregion
@@ -94,18 +100,18 @@ namespace Shockah.ItemAffix.Generator
 			chestGenerators.Add(chestGenerator = cavernsChestGenerator = new ChestAffixGeneratorDelegate(
 				env => belowSurface.Contains(env.ChestType) && env.y.Between((int)Main.rockLayer, Main.maxTilesY - 200)
 			));
-			chestGenerator.rule.WithCount((Func<int>)(() => 1 + (int)Math.Sqrt(Main.rand.NextDouble() * 12)));
+			chestGenerator.rule.WithCount(() => (int)(1 + Math.Pow(Main.rand.NextDouble(), 2) * 2.5));
 			chestGenerator.rule.With(
 				WeightRule.Of(
 					weight: 2.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreateFiery
+						(input, random) => OnHitBuffAffix.CreateFiery(0.5f + random.NextFloat() * 0.25f)
 					)
 				),
 				WeightRule.Of(
 					weight: 2.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreatePoisoned
+						(input, random) => OnHitBuffAffix.CreatePoisoned(0.5f + random.NextFloat() * 0.25f)
 					)
 				),
 				WeightRule.Of(
@@ -119,6 +125,12 @@ namespace Shockah.ItemAffix.Generator
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new WeaponHeldMovementSpeedAffix(0.07f + random.NextFloat() * 0.13f)
 					)
+				),
+				WeightRule.Of(
+					weight: 7.0,
+					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+						(input, random) => new CriticalDamageAffix(0.5f + random.NextFloat() * 0.2f)
+					)
 				)
 			);
 			#endregion
@@ -127,18 +139,18 @@ namespace Shockah.ItemAffix.Generator
 			chestGenerators.Add(chestGenerator = dungeonChestGenerator = new ChestAffixGeneratorDelegate(
 				env => env.ChestType == ChestType.GoldLocked
 			));
-			chestGenerator.rule.WithCount((Func<int>)(() => 2 + (int)Math.Sqrt(Main.rand.NextDouble() * 8)));
+			chestGenerator.rule.WithCount(() => (int)(1 + Math.Pow(Main.rand.NextDouble(), 2) * 3));
 			chestGenerator.rule.With(
 				WeightRule.Of(
 					weight: 1.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreateFiery
+						(input, random) => OnHitBuffAffix.CreateFiery()
 					)
 				),
 				WeightRule.Of(
 					weight: 1.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-						(input, random) => (Func<Affix>)OnHitBuffAffix.CreatePoisoned
+						(input, random) => OnHitBuffAffix.CreatePoisoned()
 					)
 				),
 				WeightRule.Of(
@@ -152,6 +164,12 @@ namespace Shockah.ItemAffix.Generator
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new WeaponHeldMovementSpeedAffix(0.10f + random.NextFloat() * 0.10f)
 					)
+				),
+				WeightRule.Of(
+					weight: 1.0,
+					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+						(input, random) => new CriticalDamageAffix(0.5f + random.NextFloat() * 0.25f)
+					)
 				)
 			);
 			#endregion
@@ -164,6 +182,7 @@ namespace Shockah.ItemAffix.Generator
 			{
 				if (generator.MatchesEnvironment(environment))
 				{
+					generator.SetRandom((UnifiedRandomBridge)WorldGen.genRand);
 					item.GetAffixInfo().ApplyAffixes(item, generator.GetOutput(genInfo).Select(affix => affix.Value));
 				}
 			}

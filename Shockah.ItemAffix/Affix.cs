@@ -40,5 +40,13 @@ namespace Shockah.ItemAffix
 		public virtual void UpdateEquip(Item item, Player player)
 		{
 		}
+
+		public virtual void ModifyHitByItem(Item item, Player player, NPC npc, ref int damage, ref float knockback, ref bool crit)
+		{
+		}
+
+		public virtual void ModifyHitByProjectile(Item item, Projectile projectile, Player player, NPC npc, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+		}
 	}
 }

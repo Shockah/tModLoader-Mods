@@ -9,6 +9,9 @@ namespace Shockah.ItemAffix
 {
 	public class AffixItemInfo : ItemInfo
 	{
+		private delegate void ActionNNNRRR<T1, T2, T3, T4, T5, T6>(T1 t1, T2 t2, T3 t3, ref T4 t4, ref T5 t5, ref T6 t6);
+		private delegate void ActionNNNNRRRR<T1, T2, T3, T4, T5, T6, T7, T8>(T1 t1, T2 t2, T3 t3, T4 t4, ref T5 t5, ref T6 t6, ref T7 t7, ref T8 t8);
+
 		public readonly List<Affix> affixes = new List<Affix>();
 
 		private Func<Item, string, string>[] hooksGetFormattedName;
@@ -16,6 +19,8 @@ namespace Shockah.ItemAffix
 		private Action<Item, Item, Player, NPC, int, float, bool>[] hooksOnHitNPC;
 		private Action<Item, Item, Player, Projectile, NPC, int, float, bool>[] hooksOnHitNPC2;
 		private Action<Item, Player>[] hooksUpdateEquip;
+		private ActionNNNRRR<Item, Player, NPC, int, float, bool>[] hooksModifyHitByItem;
+		private ActionNNNNRRRR<Item, Projectile, Player, NPC, int, float, bool, int>[] hooksModifyHitByProjectile;
 
 		public override ItemInfo Clone()
 		{
@@ -64,6 +69,8 @@ namespace Shockah.ItemAffix
 			hooksOnHitNPC = BuildHooks<Action<Item, Item, Player, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
 			hooksOnHitNPC2 = BuildHooks<Action<Item, Item, Player, Projectile, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
 			hooksUpdateEquip = BuildHooks<Action<Item, Player>>(o => o.UpdateEquip).ToArray();
+			hooksModifyHitByItem = BuildHooks<ActionNNNRRR<Item, Player, NPC, int, float, bool>>(o => o.ModifyHitByItem).ToArray();
+			hooksModifyHitByProjectile = BuildHooks<ActionNNNNRRRR<Item, Projectile, Player, NPC, int, float, bool, int>>(o => o.ModifyHitByProjectile).ToArray();
 		}
 
 		public string GetFormattedName(Item item, string oldName)
@@ -105,6 +112,22 @@ namespace Shockah.ItemAffix
 			foreach (var method in hooksUpdateEquip)
 			{
 				method(item, player);
+			}
+		}
+
+		public void ModifyHitByItem(Item item, Player player, NPC npc, ref int damage, ref float knockback, ref bool crit)
+		{
+			foreach (var method in hooksModifyHitByItem)
+			{
+				method(item, player, npc, ref damage, ref knockback, ref crit);
+			}
+		}
+
+		public void ModifyHitByProjectile(Item item, Projectile projectile, Player player, NPC npc, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			foreach (var method in hooksModifyHitByProjectile)
+			{
+				method(item, projectile, player, npc, ref damage, ref knockback, ref crit, ref hitDirection);
 			}
 		}
 	}

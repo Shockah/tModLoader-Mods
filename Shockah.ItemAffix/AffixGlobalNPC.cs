@@ -20,6 +20,17 @@ namespace Shockah.ItemAffix
 				npc.GetAffixInfo(mod).AddParticipant(projectile.GetOwner(), projectileInfo.weapon);
 		}
 
+		public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+		{
+			item.GetAffixInfo()?.ModifyHitByItem(item, player, npc, ref damage, ref knockback, ref crit);
+		}
+
+		public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			Item weapon = projectile.GetAffixInfo().weapon;
+			weapon?.GetAffixInfo()?.ModifyHitByProjectile(weapon, projectile, projectile.GetOwner(), npc, ref damage, ref knockback, ref crit, ref hitDirection);
+		}
+
 		public override void NPCLoot(NPC npc)
 		{
 			foreach (KeyValuePair<Player, List<Item>> kvp in npc.GetAffixInfo(mod).participants)

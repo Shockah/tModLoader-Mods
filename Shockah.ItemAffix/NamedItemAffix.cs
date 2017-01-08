@@ -4,13 +4,13 @@ namespace Shockah.ItemAffix
 {
 	public abstract class NamedItemAffix : Affix
 	{
+		public const string PrefixFormat = "{affix} {item}";
+		public const string SuffixOfFormat = "{item} of {affix}";
+		public const string SuffixOfTheFormat = "{item} of the {affix}";
+
 		public readonly string format;
 
-		public NamedItemAffix(string name, bool prefixedName = true) : this(name, prefixedName ? "{affix} {item}" : "{item} {affix}")
-		{
-		}
-
-		public NamedItemAffix(string name, string format) : base(name)
+		public NamedItemAffix(string name, string format = PrefixFormat) : base(name)
 		{
 			this.format = format;
 		}

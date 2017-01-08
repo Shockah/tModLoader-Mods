@@ -6,6 +6,8 @@ namespace Shockah.Utils.Rule
 {
 	public interface IRuleManager<out RuleType, in Input, Output> where RuleType : IRule<Input, Output>
 	{
+		Random GetRandom();
+
 		RuleType GetRule();
 
 		List<Output> GetOutput(Input input);
@@ -17,7 +19,7 @@ namespace Shockah.Utils.Rule
 
 	public class RuleManager<RuleType, Input, Output> : IRuleManager<RuleType, Input, Output> where RuleType : IRule<Input, Output>
 	{
-		public readonly Random random;
+		protected readonly Random random;
 		public readonly RuleType rule;
 
 		public RuleManager(RuleType rule, Random random = null)
@@ -26,14 +28,19 @@ namespace Shockah.Utils.Rule
 			this.random = random ?? (UnifiedRandomBridge)Main.rand;
 		}
 
-		public RuleType GetRule()
+		public virtual Random GetRandom()
+		{
+			return random;
+		}
+
+		public virtual RuleType GetRule()
 		{
 			return rule;
 		}
 
 		public virtual List<Output> GetOutput(Input input)
 		{
-			return rule.GetOutput(input, random);
+			return rule.GetOutput(input, GetRandom());
 		}
 	}
 

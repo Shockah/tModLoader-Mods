@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Affix.cs" />
     <Compile Include="Affixes\Accessories\AccesoryOnHitBuffAffix.cs" />
+    <Compile Include="Affixes\Weapons\CriticalDamageAffix.cs" />
     <Compile Include="AffixGlobalItem.cs" />
     <Compile Include="AffixItemInfo.cs" />
     <Compile Include="AffixMod.cs" />
@@ -91,7 +92,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)$(ProjectName)" "$(ProjectDir)..\build\$(ProjectName)\" /E
+xcopy "$(ProjectDir)..\Shockah.Utils" "$(ProjectDir)..\build\$(ProjectName)\Shockah.Utils\" /E
+"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(SolutionDir)build\$(ProjectName)"
+rmdir /S /Q "$(SolutionDir)build"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
