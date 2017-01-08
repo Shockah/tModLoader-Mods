@@ -1,4 +1,5 @@
-using Shockah.ItemAffix.Utils;
+using Shockah.ItemAffix.Generator;
+using Shockah.Utils;
 using System;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -11,6 +12,18 @@ namespace Shockah.ItemAffix
 
 		public override string Name => ModName;
 
+		public ChestAffixGenManager ChestGenManager
+		{
+			get;
+			private set;
+		}
+
+		public AccessoryChestAffixGenManager AccessoryChestGenManager
+		{
+			get;
+			private set;
+		}
+
 		public AffixMod()
 		{
             Properties = new ModProperties()
@@ -19,6 +32,12 @@ namespace Shockah.ItemAffix
                 AutoloadGores = true,
                 AutoloadSounds = true
 			};
+		}
+
+		public override void Load()
+		{
+			ChestGenManager = new ChestAffixGenManager();
+			AccessoryChestGenManager = new AccessoryChestAffixGenManager();
 		}
 
 		public Affix Deserialize(TagCompound tag)

@@ -1,4 +1,4 @@
-﻿using Shockah.ItemAffix.Utils;
+﻿using Shockah.Utils;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;

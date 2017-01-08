@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
+using Shockah.Utils;
 using Shockah.ItemAffix.Content;
 
 namespace Shockah.ItemAffix

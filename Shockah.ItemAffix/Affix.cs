@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Shockah.ItemAffix.Utils;
+﻿using Shockah.Utils;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -29,11 +29,11 @@ namespace Shockah.ItemAffix
 		{
 		}
 
-		public virtual void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+		public virtual void OnHitNPC(Item affixedItem, Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 		}
 
-		public virtual void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		public virtual void OnHitNPC(Item affixedItem, Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
 		{
 		}
 

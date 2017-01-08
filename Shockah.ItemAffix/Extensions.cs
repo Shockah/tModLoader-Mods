@@ -56,9 +56,33 @@ namespace Shockah.ItemAffix
 			return info.affixes.AsReadOnly();
 		}
 
-		public static bool CanApplyAffixes(this Item item)
+		private static bool IsAffixableBase(this Item item)
 		{
-			return item.damage > 0 && item.maxStack == 1;
+			if (item.maxStack != 1)
+				return false;
+
+			return true;
+		}
+
+		public static bool IsAffixable(this Item item)
+		{
+			return item.IsAffixableWeapon() || item.IsAffixableAccessory();
+		}
+
+		public static bool IsAffixableWeapon(this Item item)
+		{
+			if (item.maxStack != 1)
+				return false;
+
+			return item.damage > 0 && (item.melee || item.ranged || item.magic || item.summon || item.thrown);
+		}
+
+		public static bool IsAffixableAccessory(this Item item)
+		{
+			if (item.maxStack != 1)
+				return false;
+
+			return item.accessory;
 		}
 	}
 }

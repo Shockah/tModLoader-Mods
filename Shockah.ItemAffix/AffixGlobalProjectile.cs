@@ -1,4 +1,4 @@
-﻿using Shockah.ItemAffix.Utils;
+﻿using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -21,7 +21,13 @@ namespace Shockah.ItemAffix
 		{
 			AffixProjectileInfo info = projectile.GetAffixInfo(mod);
 			if (info.weapon != null)
-				info.weapon.GetAffixInfo(mod)?.OnHitNPC(info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
+			{
+				info.weapon.GetAffixInfo(mod)?.OnHitNPC(info.weapon, info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
+				foreach (Item equippedItem in projectile.GetOwner().armor)
+				{
+					equippedItem.GetAffixInfo(mod)?.OnHitNPC(equippedItem, info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
+				}
+			}
 		}
 	}
 }

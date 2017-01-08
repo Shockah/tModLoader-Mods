@@ -30,7 +30,7 @@ namespace Shockah.ItemAffix.Generator
 
 		public Tile Tile => Main.tile[x, y];
 
-		public ChestType ChestType => (ChestType)(Tile.frameX / 18);
+		public ChestType ChestType => (ChestType)(Tile.frameX / 36);
 
 		public ChestAffixGenEnvironment(int x, int y)
 		{

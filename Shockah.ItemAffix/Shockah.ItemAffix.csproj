@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F42F0562-13AC-47A3-BB02-AD6AB263445D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shockah.ItemAffix</RootNamespace>
+    <AssemblyName>Shockah.ItemAffix</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="tModLoader">
+      <HintPath>..\tModLoader.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <HintPath>..\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <HintPath>..\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact">
+      <HintPath>..\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Affix.cs" />
+    <Compile Include="Affixes\Accessories\AccesoryOnHitBuffAffix.cs" />
+    <Compile Include="AffixGlobalItem.cs" />
+    <Compile Include="AffixItemInfo.cs" />
+    <Compile Include="AffixMod.cs" />
+    <Compile Include="AffixModWorld.cs" />
+    <Compile Include="AffixWorldGenPass.cs" />
+    <Compile Include="Generator\Accessories\AccessoryChestAffixGenManager.cs" />
+    <Compile Include="Generator\AffixGenerator.cs" />
+    <Compile Include="Generator\ChestAffixGenerator.cs" />
+    <Compile Include="Affixes\Weapons\OnHitBuffAffix.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Generator\Weapons\ChestAffixGenManager.cs" />
+    <Compile Include="UnloadedAffix.cs" />
+    <Compile Include="NamedItemAffix.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialAffix.cs" />
+    <Compile Include="AffixGlobalNPC.cs" />
+    <Compile Include="AffixGlobalProjectile.cs" />
+    <Compile Include="AffixNPCInfo.cs" />
+    <Compile Include="AffixProjectileInfo.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialRequirement.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialKillRequirement.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialHitRequirement.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialIntRequirement.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldAffix.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldDefenseAffix.cs" />
+    <Compile Include="AffixModPlayer.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldMovementSpeedAffix.cs" />
+    <Compile Include="TestAffixContentGlobalItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shockah.Utils\Shockah.Utils.csproj">
+      <Project>{c3a40f8d-535b-49c2-b2b9-96ffc96ab903}</Project>
+      <Name>Shockah.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shockah.Utils\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

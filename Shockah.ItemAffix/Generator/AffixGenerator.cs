@@ -1,15 +1,13 @@
-﻿using Shockah.ItemAffix.Utils;
+﻿using Shockah.Utils;
+using Shockah.Utils.Rule;
 using Terraria;
 
 namespace Shockah.ItemAffix.Generator
 {
-	public abstract class AffixGenerator<Env> : RuleManager<AffixGenInfo<Env>, Affix> where Env : AffixGenEnvironment
+	public abstract class AffixGenerator<Env> : RuleManager<IWeightedRuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>, AffixGenInfo<Env>, Dynamic<Affix>> where Env : AffixGenEnvironment
 	{
-		protected readonly LimitedRule<AffixGenInfo<Env>, Affix> limitedRule;
-
-		public AffixGenerator() : base(new LimitedRule<AffixGenInfo<Env>, Affix>())
+		public AffixGenerator() : base(new WeightedRuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>())
 		{
-			limitedRule = rule as LimitedRule<AffixGenInfo<Env>, Affix>;
 		}
 	}
 

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Shockah.ItemAffix.Utils;
-using Terraria;
-using Terraria.ModLoader;
-using Shockah.ItemAffix.Content;
+﻿using Terraria.ModLoader;
 
 namespace Shockah.ItemAffix
 {
 	public class TestAffixContentGlobalItem : GlobalItem
 	{
-		public override void OnCraft(Item item, Recipe recipe)
+		/*public override void OnCraft(Item item, Recipe recipe)
 		{
 			if (!item.CanApplyAffixes())
 				return;
@@ -21,16 +16,6 @@ namespace Shockah.ItemAffix
 			affixes.Add(OnHitBuffAffix.CreatePoisoned());
 			affixes.Add(new WeaponHeldDefenseAffix(rand.Next(1, 13)));
 			affixes.Add(new WeaponHeldMovementSpeedAffix((float)(rand.NextDouble() * 0.19 + 0.01)));
-			/*affixes.Add((Func<Affix>)(() =>
-			{
-				Affix[] subaffixes = {
-					WeaponHeldMovementSpeedAffix.MoveSpeed5,
-					WeaponHeldMovementSpeedAffix.MoveSpeed10,
-					WeaponHeldMovementSpeedAffix.MoveSpeed15,
-					WeaponHeldMovementSpeedAffix.MoveSpeed20
-				};
-				return subaffixes[rand.Next(subaffixes.Length)];
-			}));*/
 
 			foreach (Affix affix in affixes)
 			{
@@ -48,6 +33,6 @@ namespace Shockah.ItemAffix
 						break;
 				}
 			}
-		}
+		}*/
 	}
 }

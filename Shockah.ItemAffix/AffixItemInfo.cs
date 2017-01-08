@@ -1,9 +1,9 @@
-﻿using Shockah.ItemAffix.Utils;
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Shockah.Utils;
 
 namespace Shockah.ItemAffix
 {
@@ -13,8 +13,8 @@ namespace Shockah.ItemAffix
 
 		private Func<Item, string, string>[] hooksGetFormattedName;
 		private Action<Item, List<TooltipLine>>[] hooksModifyTooltips;
-		private Action<Item, Player, NPC, int, float, bool>[] hooksOnHitNPC;
-		private Action<Item, Player, Projectile, NPC, int, float, bool>[] hooksOnHitNPC2;
+		private Action<Item, Item, Player, NPC, int, float, bool>[] hooksOnHitNPC;
+		private Action<Item, Item, Player, Projectile, NPC, int, float, bool>[] hooksOnHitNPC2;
 		private Action<Item, Player>[] hooksUpdateEquip;
 
 		public override ItemInfo Clone()
@@ -31,9 +31,24 @@ namespace Shockah.ItemAffix
 			SetupHooks();
 		}
 
+		public void ApplyAffixes(Item item, IEnumerable<Affix> affixes)
+		{
+			this.affixes.AddRange(affixes);
+			SetupHooks();
+		}
+
 		public void RemoveAffix(Item item, Affix affix)
 		{
 			affixes.Remove(affix);
+			SetupHooks();
+		}
+
+		public void RemoveAffixes(Item item, IEnumerable<Affix> affixes)
+		{
+			foreach (Affix affix in affixes)
+			{
+				this.affixes.Remove(affix);
+			}
 			SetupHooks();
 		}
 
@@ -46,8 +61,8 @@ namespace Shockah.ItemAffix
 		{
 			hooksGetFormattedName = BuildHooks<Func<Item, string, string>>(o => o.GetFormattedName).ToArray();
 			hooksModifyTooltips = BuildHooks<Action<Item, List<TooltipLine>>>(o => o.ModifyTooltips).ToArray();
-			hooksOnHitNPC = BuildHooks<Action<Item, Player, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
-			hooksOnHitNPC2 = BuildHooks<Action<Item, Player, Projectile, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
+			hooksOnHitNPC = BuildHooks<Action<Item, Item, Player, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
+			hooksOnHitNPC2 = BuildHooks<Action<Item, Item, Player, Projectile, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
 			hooksUpdateEquip = BuildHooks<Action<Item, Player>>(o => o.UpdateEquip).ToArray();
 		}
 
@@ -69,19 +84,19 @@ namespace Shockah.ItemAffix
 			}
 		}
 
-		public void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+		public void OnHitNPC(Item affixedItem, Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 			foreach (var method in hooksOnHitNPC)
 			{
-				method(item, player, target, damage, knockBack, crit);
+				method(affixedItem, item, player, target, damage, knockBack, crit);
 			}
 		}
 
-		public void OnHitNPC(Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
+		public void OnHitNPC(Item affixedItem, Item item, Player player, Projectile projectile, NPC target, int damage, float knockBack, bool crit)
 		{
 			foreach (var method in hooksOnHitNPC2)
 			{
-				method(item, player, projectile, target, damage, knockBack, crit);
+				method(affixedItem, item, player, projectile, target, damage, knockBack, crit);
 			}
 		}
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Shockah.ItemAffix.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -11,7 +10,7 @@ namespace Shockah.ItemAffix
 	{
 		public override bool NeedsSaving(Item item)
 		{
-			return item.CanApplyAffixes();
+			return item.IsAffixable();
 		}
 
 		public override TagCompound Save(Item item)
@@ -46,7 +45,11 @@ namespace Shockah.ItemAffix
 
 		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
-			item.GetAffixInfo(mod)?.OnHitNPC(item, player, target, damage, knockBack, crit);
+			item.GetAffixInfo(mod)?.OnHitNPC(item, item, player, target, damage, knockBack, crit);
+			foreach (Item equippedItem in player.armor)
+			{
+				equippedItem.GetAffixInfo(mod)?.OnHitNPC(equippedItem, item, player, target, damage, knockBack, crit);
+			}
 		}
 
 		public override void UpdateEquip(Item item, Player player)
