@@ -56,6 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shockah.Utils\**\*.cs">
+      <Link>Shockah.Utils\%(RecursiveDir)%(FileName)</Link>
+    </Compile>
     <Compile Include="Affix.cs" />
     <Compile Include="Affixes\Accessories\AccesoryOnHitBuffAffix.cs" />
     <Compile Include="AffixGlobalItem.cs" />
@@ -85,15 +88,6 @@
     <Compile Include="AffixModPlayer.cs" />
     <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldMovementSpeedAffix.cs" />
     <Compile Include="TestAffixContentGlobalItem.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shockah.Utils\Shockah.Utils.csproj">
-      <Project>{c3a40f8d-535b-49c2-b2b9-96ffc96ab903}</Project>
-      <Name>Shockah.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shockah.Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
