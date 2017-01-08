@@ -56,18 +56,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shockah.Utils\**\*.cs">
+      <Link>Shockah.Utils\%(RecursiveDir)%(FileName)</Link>
+    </Compile>
     <Compile Include="LootRule.cs" />
     <Compile Include="LootRuleMod.cs" />
     <Compile Include="VanillaBossBagLoot.cs" />
     <Compile Include="VanillaNPCLoot.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shockah.Utils\Shockah.Utils.csproj">
-      <Project>{c3a40f8d-535b-49c2-b2b9-96ffc96ab903}</Project>
-      <Name>Shockah.Utils</Name>
-    </ProjectReference>
+    <Content Include="..\Shockah.Utils\Shockah.Utils.csproj">
+      <Link>Shockah.Utils\Shockah.Utils.csproj</Link>
+    </Content>
+    <Content Include="..\Shockah.Utils\Shockah.Utils.csproj.user">
+      <Link>Shockah.Utils\Shockah.Utils.csproj.user</Link>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>
