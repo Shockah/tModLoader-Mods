@@ -21,7 +21,7 @@ namespace Shockah.ItemAffix.Generator
 			ChestAffixGenerator chestGenerator;
 
 			ChestType[] belowSurface = {
-				ChestType.Gold, ChestType.RichMahogany, ChestType.Ivy, ChestType.Ice, ChestType.Granite, ChestType.Marble, ChestType.Water
+				ChestType.Gold, ChestType.RichMahogany, ChestType.Ivy, ChestType.Ice, ChestType.Granite, ChestType.Marble, ChestType.Water, ChestType.Mushroom
 			};
 
 			#region Surface
