@@ -93,6 +93,7 @@
     <Compile Include="Affixes\Util\RegexNameNPCMatcher.cs" />
     <Compile Include="Affixes\Weapons\Bane\BaneAffix.cs" />
     <Compile Include="Affixes\Weapons\Bane\DamageBaneAffix.cs" />
+    <Compile Include="Affixes\Util\IDNPCMatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Affixes\Util\" />

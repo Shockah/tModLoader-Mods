@@ -24,7 +24,7 @@ namespace Shockah.ItemAffix.Content
 
 		public virtual string FormatTooltip(string tooltip)
 		{
-			string lang = string.Join(", ", matches.Select(match => match.lang));
+			string lang = string.Join(", ", matches.Where(match => match.lang != null).Select(match => match.lang));
 			tooltip = tooltip.Replace("{lang}", lang);
 			return tooltip;
 		}
