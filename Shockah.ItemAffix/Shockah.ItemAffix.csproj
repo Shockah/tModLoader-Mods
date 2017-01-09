@@ -89,6 +89,14 @@
     <Compile Include="AffixModPlayer.cs" />
     <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldMovementSpeedAffix.cs" />
     <Compile Include="TestAffixContentGlobalItem.cs" />
+    <Compile Include="Affixes\Util\NPCMatcher.cs" />
+    <Compile Include="Affixes\Util\RegexNameNPCMatcher.cs" />
+    <Compile Include="Affixes\Weapons\Bane\BaneAffix.cs" />
+    <Compile Include="Affixes\Weapons\Bane\DamageBaneAffix.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Affixes\Util\" />
+    <Folder Include="Affixes\Weapons\Bane\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
