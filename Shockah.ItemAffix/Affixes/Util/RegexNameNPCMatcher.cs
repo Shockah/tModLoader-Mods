@@ -9,22 +9,18 @@ namespace Shockah.ItemAffix.Content
 	{
 		public static readonly TagDeserializer<RegexNameNPCMatcher> DESERIALIZER = new TagDeserializer<RegexNameNPCMatcher>(tag =>
 		{
-			return new RegexNameNPCMatcher(
-				tag.GetString("lang"),
-				tag.GetString("regex")
-			);
+			return new RegexNameNPCMatcher(tag.GetString("regex"));
 		});
 
 		public readonly string regex;
 
-		public RegexNameNPCMatcher(string lang, string regex) : base(lang)
+		public RegexNameNPCMatcher(string regex)
 		{
 			this.regex = regex;
 		}
 
 		public override void SerializeData(TagCompound tag)
 		{
-			base.SerializeData(tag);
 			tag["regex"] = regex;
 		}
 

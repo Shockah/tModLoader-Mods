@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
@@ -10,17 +9,13 @@ namespace Shockah.ItemAffix.Content
 	{
 		public static readonly TagDeserializer<IDNPCMatcher> DESERIALIZER = new TagDeserializer<IDNPCMatcher>(tag =>
 		{
-			IDNPCMatcher matcher = new IDNPCMatcher(tag.GetString("lang"));
+			IDNPCMatcher matcher = new IDNPCMatcher();
 			if (tag.HasTag("ids"))
 				matcher.ids.AddRange(tag.GetList<int>("ids"));
 			return matcher;
 		});
 
 		public readonly List<int> ids = new List<int>();
-
-		public IDNPCMatcher(string lang) : base(lang)
-		{
-		}
 
 		public IDNPCMatcher With(IEnumerable<int> ids)
 		{
@@ -36,7 +31,6 @@ namespace Shockah.ItemAffix.Content
 
 		public override void SerializeData(TagCompound tag)
 		{
-			base.SerializeData(tag);
 			if (ids.Count != 0)
 				tag["ids"] = ids;
 		}

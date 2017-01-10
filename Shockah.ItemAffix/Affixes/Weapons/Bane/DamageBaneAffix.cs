@@ -14,6 +14,7 @@ namespace Shockah.ItemAffix.Content
 			DamageBaneAffix affix = new DamageBaneAffix(
 				tag.GetString("name"),
 				tag.GetString("format"),
+				tag.GetString("npcFamilyName"),
 				tag.GetFloat("damageMod")
 			);
 			if (tag.HasTag("matches"))
@@ -23,11 +24,15 @@ namespace Shockah.ItemAffix.Content
 
 		public readonly float damageMod;
 
-		public DamageBaneAffix(string name, float damageMod) : this(name, PrefixFormat, damageMod)
+		public DamageBaneAffix(string npcFamilyName, float damageMod) : this(BaneName(npcFamilyName), PrefixFormat, npcFamilyName, damageMod)
 		{
 		}
 
-		public DamageBaneAffix(string name, string format, float damageMod) : base(name, format)
+		public DamageBaneAffix(string name, string npcFamilyName, float damageMod) : this(name, PrefixFormat, npcFamilyName, damageMod)
+		{
+		}
+
+		public DamageBaneAffix(string name, string format, string npcFamilyName, float damageMod) : base(name, format, npcFamilyName)
 		{
 			this.damageMod = damageMod;
 		}
@@ -40,7 +45,7 @@ namespace Shockah.ItemAffix.Content
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format(FormatTooltip("{0:0}% damage to {lang}"), damageMod * 100));
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format(FormatTooltip("{0:0}% damage to {family}"), damageMod * 100));
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);

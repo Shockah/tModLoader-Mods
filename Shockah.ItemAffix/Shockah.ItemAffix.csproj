@@ -94,6 +94,7 @@
     <Compile Include="Affixes\Weapons\Bane\BaneAffix.cs" />
     <Compile Include="Affixes\Weapons\Bane\DamageBaneAffix.cs" />
     <Compile Include="Affixes\Util\IDNPCMatcher.cs" />
+    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialNPCIntRequirement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Affixes\Util\" />

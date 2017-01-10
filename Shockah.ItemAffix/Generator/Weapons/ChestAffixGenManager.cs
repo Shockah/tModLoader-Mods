@@ -53,6 +53,26 @@ namespace Shockah.ItemAffix.Generator
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new WeaponHeldMovementSpeedAffix(0.03f + random.NextFloat() * 0.07f)
 					)
+				),
+				WeightRule.Of(
+					weight: 3.5,
+					rule: WeightedRuleGroup.Of(
+						WeightRule.Of(
+							new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+								(input, random) => new DamageBaneAffix("Slimes", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+									new RegexNameNPCMatcher(@"\bSlime\b")
+								).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
+							)
+						),
+						WeightRule.Of(
+							new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+								(input, random) => new DamageBaneAffix("Zombies", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+									new RegexNameNPCMatcher(@"\bZombie\b"),
+									new RegexNameNPCMatcher(@"\bEye\b")
+								).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
+							)
+						)
+					)
 				)
 			);
 			#endregion
@@ -91,6 +111,28 @@ namespace Shockah.ItemAffix.Generator
 					weight: 7.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new CriticalDamageAffix(0.4f + random.NextFloat() * 0.2f)
+					)
+				),
+				WeightRule.Of(
+					weight: 5.0,
+					rule: WeightedRuleGroup.Of(
+						WeightRule.Of(
+							new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+								(input, random) => new DamageBaneAffix("Zombies", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+									new RegexNameNPCMatcher(@"\bZombie\b"),
+									new RegexNameNPCMatcher(@"\bEye\b")
+								).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
+							)
+						),
+						WeightRule.Of(
+							new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+								(input, random) => new DamageBaneAffix("Silverplated", "Undead", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+									new RegexNameNPCMatcher(@"\bZombie\b"),
+									new RegexNameNPCMatcher(@"\bEye\b"),
+									new RegexNameNPCMatcher(@"\bSkeleton\b")
+								).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
+							)
+						)
 					)
 				)
 			);
@@ -131,6 +173,16 @@ namespace Shockah.ItemAffix.Generator
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new CriticalDamageAffix(0.5f + random.NextFloat() * 0.2f)
 					)
+				),
+				WeightRule.Of(
+					weight: 5.0,
+					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+						(input, random) => new DamageBaneAffix("Silverplated", "Undead", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+							new RegexNameNPCMatcher(@"\bZombie\b"),
+							new RegexNameNPCMatcher(@"\bEye\b"),
+							new RegexNameNPCMatcher(@"\bSkeleton\b")
+						).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
+					)
 				)
 			);
 			#endregion
@@ -169,6 +221,16 @@ namespace Shockah.ItemAffix.Generator
 					weight: 1.0,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new CriticalDamageAffix(0.5f + random.NextFloat() * 0.25f)
+					)
+				),
+				WeightRule.Of(
+					weight: 2.0,
+					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
+						(input, random) => new DamageBaneAffix("Silverplated", "Undead", 1.3f + random.NextFloat() * 0.4f).WithMatches(
+							new RegexNameNPCMatcher(@"\bZombie\b"),
+							new RegexNameNPCMatcher(@"\bEye\b"),
+							new RegexNameNPCMatcher(@"\bSkeleton\b")
+						).AsHiddenPotentialWithKillRequirement(30 + random.Inclusive(0, 70))
 					)
 				)
 			);

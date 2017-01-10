@@ -6,17 +6,7 @@ namespace Shockah.ItemAffix.Content
 {
 	public abstract class NPCMatcher : TagSerializable
 	{
-		public readonly string lang;
-
-		public NPCMatcher(string lang)
-		{
-			this.lang = lang;
-		}
-
-		public virtual void SerializeData(TagCompound tag)
-		{
-			tag["lang"] = lang;
-		}
+		public abstract void SerializeData(TagCompound tag);
 
 		public abstract bool Matches(NPC npc);
 	}
