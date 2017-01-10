@@ -8,6 +8,13 @@ namespace Shockah.ItemAffix
 {
 	class AffixGlobalItem : GlobalItem
 	{
+		public override void SetDefaults(Item item)
+		{
+			AffixItemInfo info = item.GetAffixInfo();
+			info.ResetAppliedChanges(item);
+			info.ApplyChanges(item);
+		}
+
 		public override bool NeedsSaving(Item item)
 		{
 			return item.IsAffixable();
@@ -35,6 +42,7 @@ namespace Shockah.ItemAffix
 			AffixItemInfo info = item.GetAffixInfo(mod);
 			if (info == null)
 				return;
+			info.ApplyChanges(item);
 
 			TooltipLine nameLine = tooltips.Find(line => line.Name == "ItemName");
 			if (nameLine != null)

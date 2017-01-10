@@ -1,4 +1,6 @@
 ﻿using System;
+using Shockah.Utils;
+using Shockah.Utils.Rule;
 using Terraria;
 
 namespace Shockah.ItemAffix.Generator
@@ -6,6 +8,12 @@ namespace Shockah.ItemAffix.Generator
 	public abstract class ChestAffixGenerator : AffixGenerator<ChestAffixGenEnvironment>
 	{
 		public abstract bool MatchesEnvironment(ChestAffixGenEnvironment environment);
+
+		public new ChestAffixGenerator With(params IRule<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>[] rules)
+		{
+			rule.With(rules);
+			return this;
+		}
 	}
 
 	public class ChestAffixGeneratorDelegate : ChestAffixGenerator

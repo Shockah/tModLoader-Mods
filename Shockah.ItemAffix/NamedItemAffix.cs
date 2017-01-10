@@ -5,6 +5,7 @@ namespace Shockah.ItemAffix
 	public abstract class NamedItemAffix : Affix
 	{
 		public const string PrefixFormat = "{affix} {item}";
+		public const string SuffixFormat = "{item} {affix}";
 		public const string SuffixOfFormat = "{item} of {affix}";
 		public const string SuffixOfTheFormat = "{item} of the {affix}";
 

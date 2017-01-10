@@ -40,6 +40,28 @@ namespace Shockah.ItemAffix
 			AccessoryChestGenManager = new AccessoryChestAffixGenManager();
 		}
 
+		// WIP item post-SetDefaults hack
+		/*public override void ModifyInterfaceLayers(List<MethodSequenceListItem> layers)
+		{
+			int layerIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Sign Tile Bubble"));
+
+			MethodSequenceListItem theLayer = new MethodSequenceListItem(string.Format("{0} Item Values Hack", ModName), () =>
+			{
+				if (Main.playerInventory)
+				{
+				}
+				else
+				{
+				}
+				return true;
+			});
+
+			if (layerIndex == 0)
+				layers.Add(theLayer);
+			else
+				layers.Insert(layerIndex, theLayer);
+		}*/
+
 		public Affix Deserialize(TagCompound tag)
 		{
 			try

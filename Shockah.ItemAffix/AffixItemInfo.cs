@@ -12,10 +12,12 @@ namespace Shockah.ItemAffix
 		private delegate void ActionNNNRRR<T1, T2, T3, T4, T5, T6>(T1 t1, T2 t2, T3 t3, ref T4 t4, ref T5 t5, ref T6 t6);
 		private delegate void ActionNNNNRRRR<T1, T2, T3, T4, T5, T6, T7, T8>(T1 t1, T2 t2, T3 t3, T4 t4, ref T5 t5, ref T6 t6, ref T7 t7, ref T8 t8);
 
+		private bool appliedChanges = false;
 		public readonly List<Affix> affixes = new List<Affix>();
 
 		private Func<Item, string, string>[] hooksGetFormattedName;
 		private Action<Item, List<TooltipLine>>[] hooksModifyTooltips;
+		private Action<Item>[] hooksApplyChanges;
 		private Action<Item, Item, Player, NPC, int, float, bool>[] hooksOnHitNPC;
 		private Action<Item, Item, Player, Projectile, NPC, int, float, bool>[] hooksOnHitNPC2;
 		private Action<Item, Player>[] hooksUpdateEquip;
@@ -25,15 +27,29 @@ namespace Shockah.ItemAffix
 		public override ItemInfo Clone()
 		{
 			AffixItemInfo clone = new AffixItemInfo();
+			clone.appliedChanges = appliedChanges;
 			clone.affixes.AddRange(affixes);
 			clone.SetupHooks();
 			return clone;
+		}
+
+		public void ResetAppliedChanges(Item item)
+		{
+			appliedChanges = false;
+		}
+
+		public void ApplyChanges(Item item)
+		{
+			if (appliedChanges)
+				return;
+			appliedChanges = true;
 		}
 
 		public void ApplyAffix(Item item, Affix affix)
 		{
 			affixes.Add(affix);
 			SetupHooks();
+			affix.OnApply(item);
 		}
 
 		public void ApplyAffixes(Item item, IEnumerable<Affix> affixes)
@@ -46,6 +62,7 @@ namespace Shockah.ItemAffix
 		{
 			affixes.Remove(affix);
 			SetupHooks();
+			affix.OnRemove(item);
 		}
 
 		public void RemoveAffixes(Item item, IEnumerable<Affix> affixes)
@@ -55,17 +72,22 @@ namespace Shockah.ItemAffix
 				this.affixes.Remove(affix);
 			}
 			SetupHooks();
+			foreach (Affix affix in affixes)
+			{
+				affix.OnRemove(item);
+			}
 		}
 
 		private IEnumerable<R> BuildHooks<R>(Func<Affix, R> func) where R : class
 		{
-			return Hooks.Build<Affix, R>(affixes, func);
+			return Hooks.Build(affixes, func);
 		}
 
 		private void SetupHooks()
 		{
 			hooksGetFormattedName = BuildHooks<Func<Item, string, string>>(o => o.GetFormattedName).ToArray();
 			hooksModifyTooltips = BuildHooks<Action<Item, List<TooltipLine>>>(o => o.ModifyTooltips).ToArray();
+			hooksApplyChanges = BuildHooks<Action<Item>>(o => o.ApplyChanges).ToArray();
 			hooksOnHitNPC = BuildHooks<Action<Item, Item, Player, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
 			hooksOnHitNPC2 = BuildHooks<Action<Item, Item, Player, Projectile, NPC, int, float, bool>>(o => o.OnHitNPC).ToArray();
 			hooksUpdateEquip = BuildHooks<Action<Item, Player>>(o => o.UpdateEquip).ToArray();

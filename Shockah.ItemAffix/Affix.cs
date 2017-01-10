@@ -20,12 +20,24 @@ namespace Shockah.ItemAffix
 			tag["name"] = name;
 		}
 
+		public virtual void OnApply(Item item)
+		{
+		}
+
+		public virtual void OnRemove(Item item)
+		{
+		}
+
 		public virtual string GetFormattedName(Item item, string oldName)
 		{
 			return oldName;
 		}
 
 		public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+		{
+		}
+
+		public virtual void ApplyChanges(Item item)
 		{
 		}
 

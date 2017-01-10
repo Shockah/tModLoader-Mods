@@ -5,11 +5,11 @@ using Terraria;
 
 namespace Shockah.ItemAffix.Generator
 {
-	public abstract class AffixGenerator<Env> : RuleManager<IWeightedRuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>, AffixGenInfo<Env>, Dynamic<Affix>> where Env : AffixGenEnvironment
+	public abstract class AffixGenerator<Env> : RuleManager<IRuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>, AffixGenInfo<Env>, Dynamic<Affix>> where Env : AffixGenEnvironment
 	{
 		private new Random random;
 
-		public AffixGenerator() : base(new WeightedRuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>())
+		public AffixGenerator() : base(new RuleGroup<AffixGenInfo<Env>, Dynamic<Affix>>())
 		{
 			random = base.random;
 		}
@@ -22,6 +22,12 @@ namespace Shockah.ItemAffix.Generator
 		public override Random GetRandom()
 		{
 			return random;
+		}
+
+		public AffixGenerator<Env> With(params IRule<AffixGenInfo<Env>, Dynamic<Affix>>[] rules)
+		{
+			rule.With(rules);
+			return this;
 		}
 	}
 

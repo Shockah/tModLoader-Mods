@@ -95,10 +95,12 @@
     <Compile Include="Affixes\Weapons\Bane\DamageBaneAffix.cs" />
     <Compile Include="Affixes\Util\IDNPCMatcher.cs" />
     <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialNPCIntRequirement.cs" />
+    <Compile Include="Affixes\Generic\ShinyAffix.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Affixes\Util\" />
     <Folder Include="Affixes\Weapons\Bane\" />
+    <Folder Include="Affixes\Generic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
