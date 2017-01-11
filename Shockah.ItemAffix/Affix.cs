@@ -41,6 +41,10 @@ namespace Shockah.ItemAffix
 		{
 		}
 
+		public virtual void GetWeaponDamage(Item affixedItem, Item item, Player player, ref int damage)
+		{
+		}
+
 		public virtual void OnHitNPC(Item affixedItem, Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 		}

@@ -22,7 +22,7 @@ namespace Shockah.ItemAffix.Content
 
 		public override string GetRequirementTooltipName(Item item, HiddenPotentialAffix affix)
 		{
-			return string.Format("{0} hit: ", npcFamilyName ?? "Enemies");
+			return $"{npcFamilyName ?? "Enemies"} hit";
 		}
 
 		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit, HiddenPotentialAffix affix)

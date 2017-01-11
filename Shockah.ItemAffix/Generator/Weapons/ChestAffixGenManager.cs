@@ -47,13 +47,13 @@ namespace Shockah.ItemAffix.Generator
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldDefenseAffix(random.Inclusive(1, 6))
+								(input, random) => new DefenseAffix(random.Inclusive(1, 6))
 							)
 						),
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldMovementSpeedAffix(0.03f + random.NextFloat() * 0.07f)
+								(input, random) => new MovementSpeedAffix(0.03f + random.NextFloat() * 0.07f)
 							)
 						),
 						WeightRule.Of(
@@ -109,13 +109,13 @@ namespace Shockah.ItemAffix.Generator
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldDefenseAffix(random.Inclusive(2, 9))
+								(input, random) => new DefenseAffix(random.Inclusive(2, 9))
 							)
 						),
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldMovementSpeedAffix(0.05f + random.NextFloat() * 0.10f)
+								(input, random) => new MovementSpeedAffix(0.05f + random.NextFloat() * 0.10f)
 							)
 						),
 						WeightRule.Of(
@@ -179,13 +179,13 @@ namespace Shockah.ItemAffix.Generator
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldDefenseAffix(random.Inclusive(4, 12))
+								(input, random) => new DefenseAffix(random.Inclusive(4, 12))
 							)
 						),
 						WeightRule.Of(
 							weight: 5.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldMovementSpeedAffix(0.07f + random.NextFloat() * 0.13f)
+								(input, random) => new MovementSpeedAffix(0.07f + random.NextFloat() * 0.13f)
 							)
 						),
 						WeightRule.Of(
@@ -237,13 +237,13 @@ namespace Shockah.ItemAffix.Generator
 						WeightRule.Of(
 							weight: 1.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldDefenseAffix(random.Inclusive(6, 12))
+								(input, random) => new DefenseAffix(random.Inclusive(6, 12))
 							)
 						),
 						WeightRule.Of(
 							weight: 1.0,
 							rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
-								(input, random) => new WeaponHeldMovementSpeedAffix(0.10f + random.NextFloat() * 0.10f)
+								(input, random) => new MovementSpeedAffix(0.10f + random.NextFloat() * 0.10f)
 							)
 						),
 						WeightRule.Of(

@@ -30,7 +30,7 @@ namespace Shockah.ItemAffix.Content
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("+{0:0}% critical strike damage", criticalDamage * 100));
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, $"+{(criticalDamage * 100):F0}% critical strike damage");
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);

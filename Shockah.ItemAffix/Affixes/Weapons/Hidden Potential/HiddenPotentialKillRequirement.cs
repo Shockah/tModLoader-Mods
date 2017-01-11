@@ -22,7 +22,7 @@ namespace Shockah.ItemAffix.Content
 
 		public override string GetRequirementTooltipName(Item item, HiddenPotentialAffix affix)
 		{
-			return string.Format("{0} killed: ", npcFamilyName ?? "Enemies");
+			return $"{npcFamilyName ?? "Enemies"} killed";
 		}
 
 		public virtual void OnNPCKilled(NPC npc, Player player, Item item, HiddenPotentialAffix affix)

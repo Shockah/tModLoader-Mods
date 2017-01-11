@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,6 +8,7 @@ namespace Shockah.ItemAffix
 {
 	public class AffixItemInfo : ItemInfo
 	{
+		private delegate void ActionNNNR<T1, T2, T3, T4>(T1 t1, T2 t2, T3 t3, ref T4 t4);
 		private delegate void ActionNNNRRR<T1, T2, T3, T4, T5, T6>(T1 t1, T2 t2, T3 t3, ref T4 t4, ref T5 t5, ref T6 t6);
 		private delegate void ActionNNNNRRRR<T1, T2, T3, T4, T5, T6, T7, T8>(T1 t1, T2 t2, T3 t3, T4 t4, ref T5 t5, ref T6 t6, ref T7 t7, ref T8 t8);
 
@@ -17,6 +17,7 @@ namespace Shockah.ItemAffix
 		private Func<Item, string, string>[] hooksGetFormattedName;
 		private Action<Item, List<TooltipLine>>[] hooksModifyTooltips;
 		private Action<Item>[] hooksApplyChanges;
+		private ActionNNNR<Item, Item, Player, int>[] hooksGetWeaponDamage;
 		private Action<Item, Item, Player, NPC, int, float, bool>[] hooksOnHitNPC;
 		private Action<Item, Item, Player, Projectile, NPC, int, float, bool>[] hooksOnHitNPC2;
 		private Action<Item, Player>[] hooksUpdateEquip;
@@ -83,6 +84,7 @@ namespace Shockah.ItemAffix
 			BuildHooks(out hooksGetFormattedName, o => o.GetFormattedName);
 			BuildHooks(out hooksModifyTooltips, o => o.ModifyTooltips);
 			BuildHooks(out hooksApplyChanges, o => o.ApplyChanges);
+			BuildHooks(out hooksGetWeaponDamage, o => o.GetWeaponDamage);
 			BuildHooks(out hooksOnHitNPC, o => o.OnHitNPC);
 			BuildHooks(out hooksOnHitNPC2, o => o.OnHitNPC);
 			BuildHooks(out hooksUpdateEquip, o => o.UpdateEquip);
@@ -105,6 +107,14 @@ namespace Shockah.ItemAffix
 			foreach (var method in hooksModifyTooltips)
 			{
 				method(item, tooltips);
+			}
+		}
+
+		public void GetWeaponDamage(Item affixedItem, Item item, Player player, ref int damage)
+		{
+			foreach (var method in hooksGetWeaponDamage)
+			{
+				method(affixedItem, item, player, ref damage);
 			}
 		}
 

@@ -7,14 +7,14 @@ using Shockah.Utils;
 
 namespace Shockah.ItemAffix.Content
 {
-	public class WeaponHeldDefenseAffix : WeaponHeldAffix
+	public class DefenseAffix : WeaponHeldAffix
 	{
 		public static readonly List<Tuple<int, string>> affixNames = new List<Tuple<int, string>>
 		{
-			new Tuple<int, string>(10, "Warding"),
-			new Tuple<int, string>(7, "Armored"),
-			new Tuple<int, string>(4, "Guarding"),
-			new Tuple<int, string>(1, "Hard")
+			Tuple.Create(10, "Warding"),
+			Tuple.Create(7, "Armored"),
+			Tuple.Create(4, "Guarding"),
+			Tuple.Create(1, "Hard")
 		};
 
 		public readonly int defense;
@@ -29,14 +29,14 @@ namespace Shockah.ItemAffix.Content
 			return null;
 		}
 
-		public static readonly TagDeserializer<WeaponHeldDefenseAffix> DESERIALIZER = new TagDeserializer<WeaponHeldDefenseAffix>(tag =>
+		public static readonly TagDeserializer<DefenseAffix> DESERIALIZER = new TagDeserializer<DefenseAffix>(tag =>
 		{
-			return new WeaponHeldDefenseAffix(
+			return new DefenseAffix(
 				tag.GetInt("defense")
 			);
 		});
 
-		public WeaponHeldDefenseAffix(int defense) : base(GetNameForDefenseValue(defense))
+		public DefenseAffix(int defense) : base(GetNameForDefenseValue(defense))
 		{
 			this.defense = defense;
 		}
@@ -49,7 +49,7 @@ namespace Shockah.ItemAffix.Content
 		[CallOrder(-900)]
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("+{0} defense while held", defense));
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, $"+{defense} defense while held");
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);

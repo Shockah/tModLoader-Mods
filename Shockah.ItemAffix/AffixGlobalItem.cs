@@ -53,6 +53,15 @@ namespace Shockah.ItemAffix
 			info.ModifyTooltips(item, tooltips);
 		}
 
+		public override void GetWeaponDamage(Item item, Player player, ref int damage)
+		{
+			item.GetAffixInfo(mod)?.GetWeaponDamage(item, item, player, ref damage);
+			foreach (Item equippedItem in player.armor)
+			{
+				equippedItem.GetAffixInfo(mod)?.GetWeaponDamage(equippedItem, item, player, ref damage);
+			}
+		}
+
 		public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 			item.GetAffixInfo(mod)?.OnHitNPC(item, item, player, target, damage, knockBack, crit);

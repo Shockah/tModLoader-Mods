@@ -85,9 +85,9 @@
     <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialHitRequirement.cs" />
     <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialIntRequirement.cs" />
     <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldAffix.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldDefenseAffix.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\DefenseAffix.cs" />
     <Compile Include="AffixModPlayer.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldMovementSpeedAffix.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\MovementSpeedAffix.cs" />
     <Compile Include="TestAffixContentGlobalItem.cs" />
     <Compile Include="Affixes\Util\NPCMatcher.cs" />
     <Compile Include="Affixes\Util\RegexNameNPCMatcher.cs" />
@@ -96,6 +96,7 @@
     <Compile Include="Affixes\Util\IDNPCMatcher.cs" />
     <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialNPCIntRequirement.cs" />
     <Compile Include="Affixes\Generic\ShinyAffix.cs" />
+    <Compile Include="Affixes\Weapons\Weapon Held\BloodAffix.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Affixes\Util\" />

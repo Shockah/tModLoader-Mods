@@ -7,14 +7,14 @@ using Shockah.Utils;
 
 namespace Shockah.ItemAffix.Content
 {
-	public class WeaponHeldMovementSpeedAffix : WeaponHeldAffix
+	public class MovementSpeedAffix : WeaponHeldAffix
 	{
 		public static readonly List<Tuple<float, string>> affixNames = new List<Tuple<float, string>>
 		{
-			new Tuple<float, string>(0.15f, "Quick"),
-			new Tuple<float, string>(0.10f, "Hasty"),
-			new Tuple<float, string>(0.05f, "Fleeting"),
-			new Tuple<float, string>(0.00f, "Brisk")
+			Tuple.Create(0.15f, "Quick"),
+			Tuple.Create(0.10f, "Hasty"),
+			Tuple.Create(0.05f, "Fleeting"),
+			Tuple.Create(0.00f, "Brisk")
 		};
 
 		public readonly float movementSpeed;
@@ -29,14 +29,14 @@ namespace Shockah.ItemAffix.Content
 			return null;
 		}
 
-		public static readonly TagDeserializer<WeaponHeldMovementSpeedAffix> DESERIALIZER = new TagDeserializer<WeaponHeldMovementSpeedAffix>(tag =>
+		public static readonly TagDeserializer<MovementSpeedAffix> DESERIALIZER = new TagDeserializer<MovementSpeedAffix>(tag =>
 		{
-			return new WeaponHeldMovementSpeedAffix(
+			return new MovementSpeedAffix(
 				tag.GetFloat("movementSpeed")
 			);
 		});
 
-		public WeaponHeldMovementSpeedAffix(float movementSpeed) : base(GetNameForMovementSpeedValue(movementSpeed))
+		public MovementSpeedAffix(float movementSpeed) : base(GetNameForMovementSpeedValue(movementSpeed))
 		{
 			this.movementSpeed = movementSpeed;
 		}
@@ -49,7 +49,7 @@ namespace Shockah.ItemAffix.Content
 		[CallOrder(-900)]
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("+{0:0}% movement speed while held", movementSpeed * 100));
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, $"+{(movementSpeed * 100):F0}% movement speed while held");
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);

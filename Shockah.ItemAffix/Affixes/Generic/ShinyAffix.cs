@@ -42,7 +42,7 @@ namespace Shockah.ItemAffix.Content
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, string.Format("{0:0}% shop price", valueMod * 100));
+			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, $"{(valueMod * 100):F0}% shop price");
 			line.isModifier = true;
 			line.isModifierBad = false;
 			tooltips.Add(line);
