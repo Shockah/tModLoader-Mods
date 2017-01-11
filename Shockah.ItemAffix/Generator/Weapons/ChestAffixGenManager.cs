@@ -18,13 +18,16 @@ namespace Shockah.ItemAffix.Generator
 
 		public ChestAffixGenManager()
 		{
+			ChestType[] surface = {
+				ChestType.Wooden, ChestType.LivingWood, ChestType.Water
+			};
 			ChestType[] belowSurface = {
 				ChestType.Gold, ChestType.RichMahogany, ChestType.Ivy, ChestType.Ice, ChestType.Granite, ChestType.Marble, ChestType.Water, ChestType.Mushroom
 			};
 
 			#region Surface
 			chestGenerators.Add(surfaceChestGenerator = new ChestAffixGeneratorDelegate(
-				env => new ChestType[] { ChestType.Wooden, ChestType.LivingWood }.Contains(env.ChestType)
+				env => surface.Contains(env.ChestType)
 			).With(
 				WeightedRuleGroup.Of(
 					count: () => (int)(0.5 + Math.Pow(surfaceChestGenerator.GetRandom().NextDouble(), 2) * 2.0),
@@ -76,7 +79,7 @@ namespace Shockah.ItemAffix.Generator
 					)
 				),
 				ChanceRule.Of(
-					chance: 0.15f,
+					chance: 0.15,
 					rule: new RuleDelegate<AffixGenInfo<ChestAffixGenEnvironment>, Dynamic<Affix>>(
 						(input, random) => new ShinyAffix(2.0f + random.NextFloat() * 2.0f)
 					)
@@ -214,7 +217,7 @@ namespace Shockah.ItemAffix.Generator
 
 			#region Dungeon
 			chestGenerators.Add(dungeonChestGenerator = new ChestAffixGeneratorDelegate(
-				env => belowSurface.Contains(env.ChestType) && env.y.Between((int)Main.rockLayer, Main.maxTilesY - 200)
+				env => env.ChestType == ChestType.GoldLocked
 			).With(
 				WeightedRuleGroup.Of(
 					count: () => (int)(1 + Math.Pow(dungeonChestGenerator.GetRandom().NextDouble(), 2) * 3),

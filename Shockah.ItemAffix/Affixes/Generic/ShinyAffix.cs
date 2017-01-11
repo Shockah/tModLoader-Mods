@@ -30,12 +30,14 @@ namespace Shockah.ItemAffix.Content
 
 		public override void OnApply(Item item)
 		{
-			item.SetDefaults(item.type);
+			item.ResetToDefaultKeepingModInfo();
+			item.GetAffixInfo().ApplyChanges(item);
 		}
 
 		public override void OnRemove(Item item)
 		{
-			item.SetDefaults(item.type);
+			item.ResetToDefaultKeepingModInfo();
+			item.GetAffixInfo().ApplyChanges(item);
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -49,6 +51,7 @@ namespace Shockah.ItemAffix.Content
 		public override void ApplyChanges(Item item)
 		{
 			item.value = (int)(item.value * valueMod);
+			Main.NewText($"Setting value to {item.value}");
 		}
 	}
 }

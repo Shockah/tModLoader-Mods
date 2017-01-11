@@ -17,6 +17,11 @@ namespace Shockah.Utils
 			}
 			return order.OrderBy(tuple => tuple.Item2).Select(tuple => func(tuple.Item1));
 		}
+
+		public static void Build<T, R>(out R[] hooks, List<T> list, Func<T, R> func) where R : class
+		{
+			hooks = Build(list, func).ToArray();
+		}
 	}
 
 	[AttributeUsage(AttributeTargets.Method)]

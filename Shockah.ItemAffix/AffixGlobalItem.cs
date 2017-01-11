@@ -10,9 +10,12 @@ namespace Shockah.ItemAffix
 	{
 		public override void SetDefaults(Item item)
 		{
-			AffixItemInfo info = item.GetAffixInfo();
-			info.ResetAppliedChanges(item);
-			info.ApplyChanges(item);
+			item.GetAffixInfo()?.ApplyChanges(item);
+		}
+
+		public override void PostReforge(Item item)
+		{
+			item.GetAffixInfo()?.ApplyChanges(item);
 		}
 
 		public override bool NeedsSaving(Item item)
@@ -34,7 +37,7 @@ namespace Shockah.ItemAffix
 		public override void Load(Item item, TagCompound tag)
 		{
 			if (tag.HasTag("affixes"))
-				item.GetAffixInfo(mod)?.affixes.AddRange(tag.GetList<TagCompound>("affixes").Select(affixTag => (mod as AffixMod).Deserialize(affixTag)));
+				item.GetAffixInfo(mod)?.ApplyAffixes(item, tag.GetList<TagCompound>("affixes").Select(affixTag => (mod as AffixMod).Deserialize(affixTag)));
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -42,7 +45,6 @@ namespace Shockah.ItemAffix
 			AffixItemInfo info = item.GetAffixInfo(mod);
 			if (info == null)
 				return;
-			info.ApplyChanges(item);
 
 			TooltipLine nameLine = tooltips.Find(line => line.Name == "ItemName");
 			if (nameLine != null)

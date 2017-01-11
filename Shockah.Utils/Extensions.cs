@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Shockah.Utils
@@ -53,6 +56,14 @@ namespace Shockah.Utils
 		public static float NextFloat(this Random self)
 		{
 			return (float)self.NextDouble();
+		}
+
+		public static void ResetToDefaultKeepingModInfo(this Item self)
+		{
+			FieldInfo field = typeof(Item).GetField("itemInfo", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			ItemInfo[] cachedInfo = (ItemInfo[])field.GetValue(self);
+			self.SetDefaults(self.type);
+			field.SetValue(self, cachedInfo.Select(info => info.Clone()).ToArray());
 		}
 	}
 }

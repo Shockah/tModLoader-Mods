@@ -36,7 +36,7 @@ namespace Shockah.Utils.Rule
 
 		public override List<Output> GetOutput(Input input, Random random)
 		{
-			if (random.NextDouble() >= chance)
+			if (random.NextDouble() < chance)
 				return rule.GetOutput(input, random);
 			else
 				return new List<Output>();
