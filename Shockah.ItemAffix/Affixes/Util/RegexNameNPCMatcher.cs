@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
@@ -7,10 +8,10 @@ namespace Shockah.ItemAffix.Content
 {
 	public class RegexNameNPCMatcher : NPCMatcher
 	{
-		public static readonly TagDeserializer<RegexNameNPCMatcher> DESERIALIZER = new TagDeserializer<RegexNameNPCMatcher>(tag =>
+		public static readonly Func<TagCompound, RegexNameNPCMatcher> DESERIALIZER = tag =>
 		{
 			return new RegexNameNPCMatcher(tag.GetString("regex"));
-		});
+		};
 
 		public readonly string regex;
 

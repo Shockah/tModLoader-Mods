@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
@@ -7,13 +8,13 @@ namespace Shockah.ItemAffix.Content
 {
 	public class IDNPCMatcher : NPCMatcher
 	{
-		public static readonly TagDeserializer<IDNPCMatcher> DESERIALIZER = new TagDeserializer<IDNPCMatcher>(tag =>
+		public static readonly Func<TagCompound, IDNPCMatcher> DESERIALIZER = tag =>
 		{
 			IDNPCMatcher matcher = new IDNPCMatcher();
 			if (tag.HasTag("ids"))
 				matcher.ids.AddRange(tag.GetList<int>("ids"));
 			return matcher;
-		});
+		};
 
 		public readonly List<int> ids = new List<int>();
 

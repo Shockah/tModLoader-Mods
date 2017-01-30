@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
@@ -10,12 +11,12 @@ namespace Shockah.ItemAffix.Content
 	{
 		public readonly float valueMod;
 
-		public static readonly TagDeserializer<ShinyAffix> DESERIALIZER = new TagDeserializer<ShinyAffix>(tag =>
+		public static readonly Func<TagCompound, ShinyAffix> DESERIALIZER = tag =>
 		{
 			return new ShinyAffix(
 				tag.GetFloat("valueMod")
 			);
-		});
+		};
 
 		public ShinyAffix(float valueMod = 3.0f) : base(valueMod >= 1.0f ? "Shiny" : "Imitation", valueMod >= 1.0f ? PrefixFormat : SuffixFormat)
 		{

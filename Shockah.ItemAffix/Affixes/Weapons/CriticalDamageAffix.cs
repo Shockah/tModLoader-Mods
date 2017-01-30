@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -10,12 +11,12 @@ namespace Shockah.ItemAffix.Content
 	{
 		public readonly float criticalDamage;
 
-		public static readonly TagDeserializer<CriticalDamageAffix> DESERIALIZER = new TagDeserializer<CriticalDamageAffix>(tag =>
+		public static readonly Func<TagCompound, CriticalDamageAffix> DESERIALIZER = tag =>
 		{
 			return new CriticalDamageAffix(
 				tag.GetFloat("criticalDamage")
 			);
-		});
+		};
 
 		public CriticalDamageAffix(float criticalDamage) : base("Bandit", SuffixOfTheFormat)
 		{

@@ -10,26 +10,6 @@ namespace Shockah.Utils
 		void SerializeData(TagCompound tag);
 	}
 
-	public interface ITagDeserializer<out T> where T : TagSerializable
-	{
-		T Deserialize(TagCompound tag);
-	}
-
-	public sealed class TagDeserializer<T> : ITagDeserializer<T> where T : TagSerializable
-	{
-		private readonly Func<TagCompound, T> @delegate;
-
-		public TagDeserializer(Func<TagCompound, T> @delegate)
-		{
-			this.@delegate = @delegate;
-		}
-
-		public T Deserialize(TagCompound tag)
-		{
-			return @delegate(tag);
-		}
-	}
-
 	public static class TagSerializables
 	{
 		public static TagCompound Serialize(TagSerializable obj)
@@ -57,9 +37,9 @@ namespace Shockah.Utils
 			if (deserializerField == null)
 				throw new Exception(string.Format("Missing deserializer for type {0}.", type.FullName));
 
-			ITagDeserializer<T> deserializer = (ITagDeserializer<T>)deserializerField.GetValue(null);
+			Func<TagCompound, T> deserializer = (Func<TagCompound, T>)deserializerField.GetValue(null);
 			TagCompound dataTag = tag.HasTag("data") ? tag.GetCompound("data") : null;
-			return deserializer.Deserialize(dataTag);
+			return deserializer(dataTag);
 		}
 
 		private static Type GetType(string name)

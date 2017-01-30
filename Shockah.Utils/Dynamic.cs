@@ -34,10 +34,10 @@ namespace Shockah.Utils
 
 	public class DynamicValue<T> : Dynamic<T>
 	{
-		public static readonly TagDeserializer<DynamicValue<T>> DESERIALIZER = new TagDeserializer<DynamicValue<T>>(tag =>
+		public static readonly Func<TagCompound, DynamicValue<T>> DESERIALIZER = tag =>
 		{
 			return new DynamicValue<T>((T)tag["value"]);
-		});
+		};
 
 		public readonly T value;
 
@@ -68,9 +68,8 @@ namespace Shockah.Utils
 
 	public class DynamicIntRange : Dynamic<int>
 	{
-		public static readonly TagDeserializer<DynamicIntRange> DESERIALIZER = new TagDeserializer<DynamicIntRange>(tag => {
-			return new Tuple<int, int>(tag.GetInt("a"), tag.GetInt("b"));
-		});
+		public static readonly Func<TagCompound, DynamicIntRange> DESERIALIZER = tag =>
+			new Tuple<int, int>(tag.GetInt("a"), tag.GetInt("b"));
 
 		public readonly Tuple<int, int> range;
 		public readonly Random random;

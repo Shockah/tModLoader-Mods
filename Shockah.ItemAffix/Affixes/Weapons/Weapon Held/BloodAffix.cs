@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
@@ -13,13 +14,13 @@ namespace Shockah.ItemAffix.Content
 
 		protected float counter = 0f;
 
-		public static readonly TagDeserializer<BloodAffix> DESERIALIZER = new TagDeserializer<BloodAffix>(tag =>
+		public static readonly Func<TagCompound, BloodAffix> DESERIALIZER = tag =>
 		{
 			return new BloodAffix(
 				tag.GetFloat("damage"),
 				tag.GetFloat("healthLossPerSecond")
 			);
-		});
+		};
 
 		public BloodAffix(float damage, float healthLossPerSecond) : base("Blood", PrefixFormat)
 		{

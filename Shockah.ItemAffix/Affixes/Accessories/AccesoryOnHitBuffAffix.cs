@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -15,7 +16,7 @@ namespace Shockah.ItemAffix.Content
 		public readonly string tooltip;
 		public readonly string tooltip100;
 
-		public static readonly TagDeserializer<AccessoryOnHitBuffAffix> DESERIALIZER = new TagDeserializer<AccessoryOnHitBuffAffix>(tag =>
+		public static readonly Func<TagCompound, AccessoryOnHitBuffAffix> DESERIALIZER = tag =>
 		{
 			return new AccessoryOnHitBuffAffix(
 				tag.GetString("name"),
@@ -25,7 +26,7 @@ namespace Shockah.ItemAffix.Content
 				tag.GetString("tooltip"),
 				tag.GetString("tooltip100")
 			);
-		});
+		};
 
 		public static AccessoryOnHitBuffAffix CreateFiery(float chance = 1f)
 		{

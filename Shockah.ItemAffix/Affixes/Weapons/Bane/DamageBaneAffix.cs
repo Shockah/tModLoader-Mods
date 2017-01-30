@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Shockah.Utils;
 using Terraria;
@@ -9,7 +10,7 @@ namespace Shockah.ItemAffix.Content
 {
 	public class DamageBaneAffix : BaneAffix
 	{
-		public static readonly TagDeserializer<DamageBaneAffix> DESERIALIZER = new TagDeserializer<DamageBaneAffix>(tag =>
+		public static readonly Func<TagCompound, DamageBaneAffix> DESERIALIZER = tag =>
 		{
 			DamageBaneAffix affix = new DamageBaneAffix(
 				tag.GetString("name"),
@@ -20,7 +21,7 @@ namespace Shockah.ItemAffix.Content
 			if (tag.HasTag("matches"))
 				affix.matches.AddRange(tag.GetList<TagCompound>("matches").Select(matchTag => TagSerializables.Deserialize<NPCMatcher>(matchTag)));
 			return affix;
-		});
+		};
 
 		public readonly float damageMod;
 
