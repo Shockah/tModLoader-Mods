@@ -1,5 +1,4 @@
-﻿using Shockah.Utils;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -15,9 +14,11 @@ namespace Shockah.ItemAffix
 			this.name = name;
 		}
 
-		public virtual void SerializeData(TagCompound tag)
+		public virtual TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["name"] = name;
+			return tag;
 		}
 
 		public virtual void OnApply(Item item)

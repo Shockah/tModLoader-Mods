@@ -41,9 +41,11 @@ namespace Shockah.ItemAffix.Content
 			this.movementSpeed = movementSpeed;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = base.SerializeData();
 			tag["movementSpeed"] = movementSpeed;
+			return tag;
 		}
 
 		[CallOrder(-900)]

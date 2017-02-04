@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Shockah.Utils;
+﻿using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -20,9 +19,11 @@ namespace Shockah.ItemAffix.Content
 			this.regex = regex;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["regex"] = regex;
+			return tag;
 		}
 
 		public override bool Matches(NPC npc)

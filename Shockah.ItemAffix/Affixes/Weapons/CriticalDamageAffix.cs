@@ -1,4 +1,4 @@
-﻿using Shockah.Utils;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -23,10 +23,11 @@ namespace Shockah.ItemAffix.Content
 			this.criticalDamage = criticalDamage;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["criticalDamage"] = criticalDamage;
+			return tag;
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

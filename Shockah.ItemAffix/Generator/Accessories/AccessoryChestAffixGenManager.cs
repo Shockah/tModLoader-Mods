@@ -129,6 +129,7 @@ namespace Shockah.ItemAffix.Generator
 			{
 				if (generator.MatchesEnvironment(environment))
 				{
+					generator.SetRandom((UnifiedRandomBridge)WorldGen.genRand);
 					item.GetAffixInfo().ApplyAffixes(item, generator.GetOutput(genInfo).Select(affix => affix.Value));
 					return;
 				}

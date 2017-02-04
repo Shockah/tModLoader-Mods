@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Shockah.Utils;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -28,11 +27,12 @@ namespace Shockah.ItemAffix.Content
 			this.healthLossPerSecond = healthLossPerSecond;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["damage"] = damage;
 			tag["healthLossPerSecond"] = healthLossPerSecond;
+			return tag;
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

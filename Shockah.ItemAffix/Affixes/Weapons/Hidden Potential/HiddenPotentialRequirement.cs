@@ -1,12 +1,11 @@
-﻿using Shockah.Utils;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Shockah.ItemAffix.Content
 {
 	public abstract class HiddenPotentialRequirement : TagSerializable
 	{
-		public abstract void SerializeData(TagCompound tag);
+		public abstract TagCompound SerializeData();
 
 		public abstract string GetTooltip(Item item, HiddenPotentialAffix affix);
 

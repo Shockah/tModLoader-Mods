@@ -4,6 +4,7 @@ using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -23,10 +24,11 @@ namespace Shockah.ItemAffix.Content
 			this.valueMod = valueMod;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["valueMod"] = valueMod;
+			return tag;
 		}
 
 		public override void OnApply(Item item)

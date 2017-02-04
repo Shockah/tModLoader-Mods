@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Shockah.Utils;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader.IO;
 
@@ -7,14 +6,14 @@ namespace Shockah.ItemAffix.Content
 {
 	public class HiddenPotentialHitRequirement : HiddenPotentialNPCIntRequirement
 	{
-		public static readonly TagDeserializer<HiddenPotentialHitRequirement> DESERIALIZER = new TagDeserializer<HiddenPotentialHitRequirement>(tag =>
+		public static readonly Func<TagCompound, HiddenPotentialHitRequirement> DESERIALIZER = tag =>
 		{
 			HiddenPotentialHitRequirement requirement = new HiddenPotentialHitRequirement(tag.GetInt("required"), tag.GetString("npcFamilyName"));
 			requirement.progress = tag.GetInt("progress");
-			if (tag.HasTag("matches"))
-				requirement.matches.AddRange(tag.GetList<TagCompound>("matches").Select(matchTag => TagSerializables.Deserialize<NPCMatcher>(matchTag)));
+			if (tag.ContainsKey("matches"))
+				requirement.matches.AddRange(tag.GetList<NPCMatcher>("matches"));
 			return requirement;
-		});
+		};
 
 		public HiddenPotentialHitRequirement(int required, string npcFamilyName) : base(required, npcFamilyName)
 		{

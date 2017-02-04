@@ -41,9 +41,11 @@ namespace Shockah.ItemAffix.Content
 			this.defense = defense;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = base.SerializeData();
 			tag["defense"] = defense;
+			return tag;
 		}
 
 		[CallOrder(-900)]

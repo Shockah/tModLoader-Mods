@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Shockah.Utils;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -12,13 +13,13 @@ namespace Shockah.ItemAffix.Content
 		public readonly Affix hiddenAffix;
 		public readonly HiddenPotentialRequirement requirement;
 
-		public static readonly TagDeserializer<HiddenPotentialAffix> DESERIALIZER = new TagDeserializer<HiddenPotentialAffix>(tag =>
+		public static readonly Func<TagCompound, HiddenPotentialAffix> DESERIALIZER = tag =>
 		{
 			return new HiddenPotentialAffix(
-				TagSerializables.Deserialize<Affix>(tag["hiddenAffix"] as TagCompound),
-				TagSerializables.Deserialize<HiddenPotentialRequirement>(tag["requirement"] as TagCompound)
+				tag.Get<Affix>("hiddenAffix"),
+				tag.Get<HiddenPotentialRequirement>("requirement")
 			);
-		});
+		};
 
 		public HiddenPotentialAffix(Affix hiddenAffix, HiddenPotentialRequirement requirement) : base("Hidden Potential")
 		{
@@ -26,10 +27,12 @@ namespace Shockah.ItemAffix.Content
 			this.requirement = requirement;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			tag["hiddenAffix"] = TagSerializables.Serialize(hiddenAffix);
-			tag["requirement"] = TagSerializables.Serialize(requirement);
+			TagCompound tag = base.SerializeData();
+			tag["hiddenAffix"] = hiddenAffix;
+			tag["requirement"] = requirement;
+			return tag;
 		}
 
 		[CallOrder(100)]

@@ -66,12 +66,11 @@ namespace Shockah.ItemAffix
 		{
 			try
 			{
-				return TagSerializables.Deserialize<Affix>(tag);
+				return TagIO.Deserialize<Affix>(tag);
 			}
 			catch (TypeUnloadedException)
 			{
-				TagCompound dataTag = tag.HasTag("data") ? tag.GetCompound("data") : null;
-				return new UnloadedAffix(tag.GetString("type"), dataTag);
+				return new UnloadedAffix(tag);
 			}
 		}
 
@@ -80,15 +79,11 @@ namespace Shockah.ItemAffix
 			UnloadedAffix unloadedAffix = affix as UnloadedAffix;
 			if (unloadedAffix == null)
 			{
-				return TagSerializables.Serialize(affix);
+				return (TagCompound)TagIO.Serialize(affix);
 			}
 			else
 			{
-				TagCompound tag = new TagCompound();
-				tag["type"] = unloadedAffix.typeName;
-				if (unloadedAffix.tag != null)
-					tag["data"] = unloadedAffix.tag;
-				return tag;
+				return unloadedAffix.SerializeData();
 			}
 		}
 	}
