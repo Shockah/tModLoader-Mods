@@ -11,10 +11,7 @@ namespace Shockah.Utils
 			get;
 		}
 
-		public virtual void SerializeData(TagCompound tag)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract TagCompound SerializeData();
 
 		public static implicit operator T(Dynamic<T> self)
 		{
@@ -34,10 +31,10 @@ namespace Shockah.Utils
 
 	public class DynamicValue<T> : Dynamic<T>
 	{
-		public static readonly TagDeserializer<DynamicValue<T>> DESERIALIZER = new TagDeserializer<DynamicValue<T>>(tag =>
+		public static readonly Func<TagCompound, DynamicValue<T>> DESERIALIZER = tag =>
 		{
 			return new DynamicValue<T>((T)tag["value"]);
-		});
+		};
 
 		public readonly T value;
 
@@ -48,9 +45,11 @@ namespace Shockah.Utils
 			this.value = value;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["value"] = value;
+			return tag;
 		}
 	}
 
@@ -64,13 +63,18 @@ namespace Shockah.Utils
 		{
 			this.@delegate = @delegate;
 		}
+
+		public override TagCompound SerializeData()
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class DynamicIntRange : Dynamic<int>
 	{
-		public static readonly TagDeserializer<DynamicIntRange> DESERIALIZER = new TagDeserializer<DynamicIntRange>(tag => {
+		public static readonly Func<TagCompound, DynamicIntRange> DESERIALIZER = tag => {
 			return new Tuple<int, int>(tag.GetInt("a"), tag.GetInt("b"));
-		});
+		};
 
 		public readonly Tuple<int, int> range;
 		public readonly Random random;
@@ -87,10 +91,12 @@ namespace Shockah.Utils
 			this.random = random ?? (UnifiedRandomBridge)Main.rand;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["a"] = range.Item1;
 			tag["b"] = range.Item2;
+			return tag;
 		}
 
 		public static implicit operator DynamicIntRange(Tuple<int, int> range)

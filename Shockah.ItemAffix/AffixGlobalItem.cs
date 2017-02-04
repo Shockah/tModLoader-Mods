@@ -36,7 +36,7 @@ namespace Shockah.ItemAffix
 
 		public override void Load(Item item, TagCompound tag)
 		{
-			if (tag.HasTag("affixes"))
+			if (tag.ContainsKey("affixes"))
 				item.GetAffixInfo(mod)?.ApplyAffixes(item, tag.GetList<TagCompound>("affixes").Select(affixTag => (mod as AffixMod).Deserialize(affixTag)));
 		}
 

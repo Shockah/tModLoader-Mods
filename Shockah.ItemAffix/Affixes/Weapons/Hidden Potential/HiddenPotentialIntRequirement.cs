@@ -24,10 +24,12 @@ namespace Shockah.ItemAffix.Content
 			return formatted;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["progress"] = progress;
 			tag["required"] = required;
+			return tag;
 		}
 
 		public void Progress(int progress, Item item, HiddenPotentialAffix affix)

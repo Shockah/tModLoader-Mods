@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -9,7 +9,7 @@ namespace Shockah.ItemAffix.Content
 {
 	public class DamageBaneAffix : BaneAffix
 	{
-		public static readonly TagDeserializer<DamageBaneAffix> DESERIALIZER = new TagDeserializer<DamageBaneAffix>(tag =>
+		public static readonly Func<TagCompound, DamageBaneAffix> DESERIALIZER = tag =>
 		{
 			DamageBaneAffix affix = new DamageBaneAffix(
 				tag.GetString("name"),
@@ -17,10 +17,10 @@ namespace Shockah.ItemAffix.Content
 				tag.GetString("npcFamilyName"),
 				tag.GetFloat("damageMod")
 			);
-			if (tag.HasTag("matches"))
-				affix.matches.AddRange(tag.GetList<TagCompound>("matches").Select(matchTag => TagSerializables.Deserialize<NPCMatcher>(matchTag)));
+			if (tag.ContainsKey("matches"))
+				affix.matches.AddRange(tag.GetList<NPCMatcher>("matches"));
 			return affix;
-		});
+		};
 
 		public readonly float damageMod;
 
@@ -37,10 +37,11 @@ namespace Shockah.ItemAffix.Content
 			this.damageMod = damageMod;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["damageMod"] = damageMod;
+			return tag;
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

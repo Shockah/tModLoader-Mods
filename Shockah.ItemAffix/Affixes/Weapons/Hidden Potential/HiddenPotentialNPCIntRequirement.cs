@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
 
@@ -16,12 +14,13 @@ namespace Shockah.ItemAffix.Content
 			this.npcFamilyName = npcFamilyName;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["npcFamilyName"] = npcFamilyName;
 			if (matches.Count != 0)
-				tag["matches"] = matches.Select(match => TagSerializables.Serialize(match)).ToList();
+				tag["matches"] = matches;
+			return tag;
 		}
 
 		public virtual bool Matches(NPC npc)

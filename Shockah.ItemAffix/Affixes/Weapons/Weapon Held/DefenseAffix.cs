@@ -29,21 +29,23 @@ namespace Shockah.ItemAffix.Content
 			return null;
 		}
 
-		public static readonly TagDeserializer<DefenseAffix> DESERIALIZER = new TagDeserializer<DefenseAffix>(tag =>
+		public static readonly Func<TagCompound, DefenseAffix> DESERIALIZER = tag =>
 		{
 			return new DefenseAffix(
 				tag.GetInt("defense")
 			);
-		});
+		};
 
 		public DefenseAffix(int defense) : base(GetNameForDefenseValue(defense))
 		{
 			this.defense = defense;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = base.SerializeData();
 			tag["defense"] = defense;
+			return tag;
 		}
 
 		[CallOrder(-900)]

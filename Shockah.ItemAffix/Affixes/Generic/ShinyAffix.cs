@@ -3,6 +3,7 @@ using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -10,22 +11,23 @@ namespace Shockah.ItemAffix.Content
 	{
 		public readonly float valueMod;
 
-		public static readonly TagDeserializer<ShinyAffix> DESERIALIZER = new TagDeserializer<ShinyAffix>(tag =>
+		public static readonly Func<TagCompound, ShinyAffix> DESERIALIZER = tag =>
 		{
 			return new ShinyAffix(
 				tag.GetFloat("valueMod")
 			);
-		});
+		};
 
 		public ShinyAffix(float valueMod = 3.0f) : base(valueMod >= 1.0f ? "Shiny" : "Imitation", valueMod >= 1.0f ? PrefixFormat : SuffixFormat)
 		{
 			this.valueMod = valueMod;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["valueMod"] = valueMod;
+			return tag;
 		}
 
 		public override void OnApply(Item item)

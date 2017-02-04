@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
-using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
 	public class IDNPCMatcher : NPCMatcher
 	{
-		public static readonly TagDeserializer<IDNPCMatcher> DESERIALIZER = new TagDeserializer<IDNPCMatcher>(tag =>
+		public static readonly Func<TagCompound, IDNPCMatcher> DESERIALIZER = tag =>
 		{
 			IDNPCMatcher matcher = new IDNPCMatcher();
-			if (tag.HasTag("ids"))
+			if (tag.ContainsKey("ids"))
 				matcher.ids.AddRange(tag.GetList<int>("ids"));
 			return matcher;
-		});
+		};
 
 		public readonly List<int> ids = new List<int>();
 
@@ -29,10 +29,12 @@ namespace Shockah.ItemAffix.Content
 			return this;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			if (ids.Count != 0)
 				tag["ids"] = ids;
+			return tag;
 		}
 
 		public override bool Matches(NPC npc)

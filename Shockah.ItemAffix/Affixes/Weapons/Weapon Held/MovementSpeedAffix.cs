@@ -29,21 +29,23 @@ namespace Shockah.ItemAffix.Content
 			return null;
 		}
 
-		public static readonly TagDeserializer<MovementSpeedAffix> DESERIALIZER = new TagDeserializer<MovementSpeedAffix>(tag =>
+		public static readonly Func<TagCompound, MovementSpeedAffix> DESERIALIZER = tag =>
 		{
 			return new MovementSpeedAffix(
 				tag.GetFloat("movementSpeed")
 			);
-		});
+		};
 
 		public MovementSpeedAffix(float movementSpeed) : base(GetNameForMovementSpeedValue(movementSpeed))
 		{
 			this.movementSpeed = movementSpeed;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = base.SerializeData();
 			tag["movementSpeed"] = movementSpeed;
+			return tag;
 		}
 
 		[CallOrder(-900)]

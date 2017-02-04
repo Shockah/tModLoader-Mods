@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
@@ -13,13 +13,13 @@ namespace Shockah.ItemAffix.Content
 
 		protected float counter = 0f;
 
-		public static readonly TagDeserializer<BloodAffix> DESERIALIZER = new TagDeserializer<BloodAffix>(tag =>
+		public static readonly Func<TagCompound, BloodAffix> DESERIALIZER = tag =>
 		{
 			return new BloodAffix(
 				tag.GetFloat("damage"),
 				tag.GetFloat("healthLossPerSecond")
 			);
-		});
+		};
 
 		public BloodAffix(float damage, float healthLossPerSecond) : base("Blood", PrefixFormat)
 		{
@@ -27,11 +27,12 @@ namespace Shockah.ItemAffix.Content
 			this.healthLossPerSecond = healthLossPerSecond;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["damage"] = damage;
 			tag["healthLossPerSecond"] = healthLossPerSecond;
+			return tag;
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

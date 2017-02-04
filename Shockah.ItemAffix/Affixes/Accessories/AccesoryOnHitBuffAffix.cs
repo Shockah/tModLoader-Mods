@@ -1,4 +1,5 @@
 ﻿using Shockah.Utils;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -15,17 +16,17 @@ namespace Shockah.ItemAffix.Content
 		public readonly string tooltip;
 		public readonly string tooltip100;
 
-		public static readonly TagDeserializer<AccessoryOnHitBuffAffix> DESERIALIZER = new TagDeserializer<AccessoryOnHitBuffAffix>(tag =>
+		public static readonly Func<TagCompound, AccessoryOnHitBuffAffix> DESERIALIZER = tag =>
 		{
 			return new AccessoryOnHitBuffAffix(
 				tag.GetString("name"),
 				tag.GetInt("buffType"),
-				TagSerializables.Deserialize<Dynamic<int>>(tag["buffTime"] as TagCompound),
+				tag.Get<Dynamic<int>>("buffTime"),
 				tag.GetFloat("chance"),
 				tag.GetString("tooltip"),
 				tag.GetString("tooltip100")
 			);
-		});
+		};
 
 		public static AccessoryOnHitBuffAffix CreateFiery(float chance = 1f)
 		{
@@ -50,14 +51,15 @@ namespace Shockah.ItemAffix.Content
 			this.tooltip100 = tooltip100;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
-			base.SerializeData(tag);
+			TagCompound tag = base.SerializeData();
 			tag["buffType"] = buffType;
-			tag["buffTime"] = TagSerializables.Serialize(buffTime);
+			tag["buffTime"] = buffTime;
 			tag["chance"] = chance;
 			tag["tooltip"] = tooltip;
 			tag["tooltip100"] = tooltip100;
+			return tag;
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

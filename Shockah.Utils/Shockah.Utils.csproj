@@ -71,7 +71,6 @@
     <Compile Include="Rule\RuleManager.cs" />
     <Compile Include="Rule\WeightedRuleGroup.cs" />
     <Compile Include="Rule\WeightRule.cs" />
-    <Compile Include="TagSerializable.cs" />
     <Compile Include="UnifiedRandomBridge.cs" />
     <Compile Include="WeightedRandom.cs" />
   </ItemGroup>

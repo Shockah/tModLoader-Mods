@@ -1,16 +1,16 @@
 ﻿using System.Text.RegularExpressions;
-using Shockah.Utils;
 using Terraria;
 using Terraria.ModLoader.IO;
+using System;
 
 namespace Shockah.ItemAffix.Content
 {
 	public class RegexNameNPCMatcher : NPCMatcher
 	{
-		public static readonly TagDeserializer<RegexNameNPCMatcher> DESERIALIZER = new TagDeserializer<RegexNameNPCMatcher>(tag =>
+		public static readonly Func<TagCompound, RegexNameNPCMatcher> DESERIALIZER = tag =>
 		{
 			return new RegexNameNPCMatcher(tag.GetString("regex"));
-		});
+		};
 
 		public readonly string regex;
 
@@ -19,9 +19,11 @@ namespace Shockah.ItemAffix.Content
 			this.regex = regex;
 		}
 
-		public override void SerializeData(TagCompound tag)
+		public override TagCompound SerializeData()
 		{
+			TagCompound tag = new TagCompound();
 			tag["regex"] = regex;
+			return tag;
 		}
 
 		public override bool Matches(NPC npc)
