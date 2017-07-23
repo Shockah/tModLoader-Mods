@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.OverwatchHealth", "Shockah.OverwatchHealth\Shockah.OverwatchHealth.csproj", "{8298EAB6-0586-4BDA-9483-83624B66B13A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.ItemAffix", "Shockah.ItemAffix\Shockah.ItemAffix.csproj", "{F42F0562-13AC-47A3-BB02-AD6AB263445D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shockah.Utils", "Shockah.Utils\Shockah.Utils.csproj", "{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terraria", "..\tModLoader\src\Terraria\Terraria.csproj", "{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,38 +153,6 @@ Global
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.WindowsServerRelease|Any CPU.Build.0 = Release|Any CPU
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.WindowsServerRelease|x86.ActiveCfg = Release|Any CPU
 		{C3A40F8D-535B-49C2-B2B9-96FFC96AB903}.WindowsServerRelease|x86.Build.0 = Release|Any CPU
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Debug|Any CPU.ActiveCfg = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Debug|Any CPU.Build.0 = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Debug|x86.ActiveCfg = WindowsServerDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Debug|x86.Build.0 = WindowsServerDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxRelease|Any CPU.ActiveCfg = LinuxRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxRelease|x86.ActiveCfg = LinuxRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxRelease|x86.Build.0 = LinuxRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxServerRelease|Any CPU.ActiveCfg = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxServerRelease|x86.ActiveCfg = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.LinuxServerRelease|x86.Build.0 = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacRelease|Any CPU.ActiveCfg = MacRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacRelease|x86.ActiveCfg = MacRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacRelease|x86.Build.0 = MacRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacServerRelease|Any CPU.ActiveCfg = MacServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacServerRelease|x86.ActiveCfg = MacServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.MacServerRelease|x86.Build.0 = MacServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Release|Any CPU.ActiveCfg = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Release|Any CPU.Build.0 = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Release|x86.ActiveCfg = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.Release|x86.Build.0 = LinuxServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsDebug|Any CPU.ActiveCfg = WindowsDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsDebug|x86.ActiveCfg = WindowsDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsDebug|x86.Build.0 = WindowsDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsRelease|Any CPU.ActiveCfg = WindowsRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsRelease|x86.ActiveCfg = WindowsRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsRelease|x86.Build.0 = WindowsRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerDebug|Any CPU.ActiveCfg = WindowsServerDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerDebug|x86.ActiveCfg = WindowsServerDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerDebug|x86.Build.0 = WindowsServerDebug|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerRelease|Any CPU.ActiveCfg = WindowsServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerRelease|x86.ActiveCfg = WindowsServerRelease|x86
-		{3996D5FA-6E59-4FE4-9F2B-40EEEF9645D5}.WindowsServerRelease|x86.Build.0 = WindowsServerRelease|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

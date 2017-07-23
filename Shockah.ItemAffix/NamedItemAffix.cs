@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Shockah.ItemAffix
+﻿namespace Shockah.ItemAffix
 {
 	public abstract class NamedItemAffix : Affix
 	{
@@ -16,10 +14,10 @@ namespace Shockah.ItemAffix
 			this.format = format;
 		}
 
-		public override string GetFormattedName(Item item, string oldName)
+		public override string GetFormattedName(string oldName)
 		{
 			string format = this.format;
-			if (item.name.Contains(format.Replace("{item}", "").Replace("{affix}", name)))
+			if (item.Name.Contains(format.Replace("{item}", "").Replace("{affix}", name)))
 				format = "{item}";
 			format = format.Replace("{affix}", name);
 			format = format.Replace("{item}", oldName);

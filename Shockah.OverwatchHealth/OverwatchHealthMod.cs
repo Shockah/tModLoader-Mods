@@ -4,21 +4,21 @@ using Terraria.ModLoader;
 
 namespace Shockah.OverwatchHealth
 {
-    class OverwatchHealthMod : Mod
+	class OverwatchHealthMod : Mod
 	{
 		public OverwatchHealthMod()
 		{
-            Properties = new ModProperties()
-            {
-                Autoload = true,
-                AutoloadGores = true,
-                AutoloadSounds = true
+			Properties = new ModProperties()
+			{
+				Autoload = true,
+				AutoloadGores = true,
+				AutoloadSounds = true
 			};
 		}
 
-        public override void ModifyInterfaceLayers(List<MethodSequenceListItem> layers)
-        {
-            base.ModifyInterfaceLayers(layers);
-        }
-    }
+		public override void ModifyInterfaceLayers(List<MethodSequenceListItem> layers)
+		{
+			base.ModifyInterfaceLayers(layers);
+		}
+	}
 }

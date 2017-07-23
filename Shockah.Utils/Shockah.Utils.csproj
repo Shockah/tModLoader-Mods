@@ -59,6 +59,10 @@
     <Compile Include="Dynamic.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Hooks.cs" />
+    <Compile Include="OwnedGlobals\Extensions.cs" />
+    <Compile Include="OwnedGlobals\OwnedGlobalItem.cs" />
+    <Compile Include="OwnedGlobals\OwnedGlobalNPC.cs" />
+    <Compile Include="OwnedGlobals\OwnedGlobalProjectile.cs" />
     <Compile Include="Rule\BackupRule.cs" />
     <Compile Include="Rule\BackupRuleManager.cs" />
     <Compile Include="Rule\ChanceRule.cs" />

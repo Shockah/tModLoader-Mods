@@ -1,5 +1,4 @@
 ﻿using Shockah.Utils;
-using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Shockah.ItemAffix
@@ -19,9 +18,9 @@ namespace Shockah.ItemAffix
 		}
 
 		[CallOrder(double.PositiveInfinity)]
-		public override string GetFormattedName(Item item, string oldName)
+		public override string GetFormattedName(string oldName)
 		{
-			return base.GetFormattedName(item, oldName);
+			return base.GetFormattedName(oldName);
 		}
 	}
 }

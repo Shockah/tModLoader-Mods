@@ -56,52 +56,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shockah.Utils\**\*.cs">
-      <Link>Shockah.Utils\%(RecursiveDir)%(FileName)</Link>
+    <Compile Include="..\Shockah.Utils\**">
+      <Link>**</Link>
     </Compile>
     <Compile Include="Affix.cs" />
-    <Compile Include="Affixes\Accessories\AccesoryOnHitBuffAffix.cs" />
-    <Compile Include="Affixes\Weapons\CriticalDamageAffix.cs" />
     <Compile Include="AffixGlobalItem.cs" />
-    <Compile Include="AffixItemInfo.cs" />
-    <Compile Include="AffixMod.cs" />
-    <Compile Include="AffixModWorld.cs" />
-    <Compile Include="AffixWorldGenPass.cs" />
-    <Compile Include="Generator\Accessories\AccessoryChestAffixGenManager.cs" />
-    <Compile Include="Generator\AffixGenerator.cs" />
-    <Compile Include="Generator\ChestAffixGenerator.cs" />
-    <Compile Include="Affixes\Weapons\OnHitBuffAffix.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Generator\Weapons\ChestAffixGenManager.cs" />
-    <Compile Include="UnloadedAffix.cs" />
-    <Compile Include="NamedItemAffix.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialAffix.cs" />
-    <Compile Include="AffixGlobalNPC.cs" />
+    <Compile Include="AffixGlobalItem+Info.cs" />
+    <Compile Include="AffixGlobalItem+Hooks.cs" />
     <Compile Include="AffixGlobalProjectile.cs" />
-    <Compile Include="AffixNPCInfo.cs" />
-    <Compile Include="AffixProjectileInfo.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialRequirement.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialKillRequirement.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialHitRequirement.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialIntRequirement.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\WeaponHeldAffix.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\DefenseAffix.cs" />
-    <Compile Include="AffixModPlayer.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\MovementSpeedAffix.cs" />
-    <Compile Include="TestAffixContentGlobalItem.cs" />
-    <Compile Include="Affixes\Util\NPCMatcher.cs" />
-    <Compile Include="Affixes\Util\RegexNameNPCMatcher.cs" />
-    <Compile Include="Affixes\Weapons\Bane\BaneAffix.cs" />
-    <Compile Include="Affixes\Weapons\Bane\DamageBaneAffix.cs" />
-    <Compile Include="Affixes\Util\IDNPCMatcher.cs" />
-    <Compile Include="Affixes\Weapons\Hidden Potential\HiddenPotentialNPCIntRequirement.cs" />
-    <Compile Include="Affixes\Generic\ShinyAffix.cs" />
-    <Compile Include="Affixes\Weapons\Weapon Held\BloodAffix.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Affixes\Util\" />
-    <Folder Include="Affixes\Weapons\Bane\" />
-    <Folder Include="Affixes\Generic\" />
+    <Compile Include="AffixMod.cs" />
+    <Compile Include="Item+AffixExtensions.cs" />
+    <Compile Include="NamedItemAffix.cs" />
+    <Compile Include="UnloadedAffix.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

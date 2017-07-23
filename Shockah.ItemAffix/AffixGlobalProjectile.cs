@@ -1,32 +1,23 @@
 ﻿using Shockah.Utils;
+using Shockah.Utils.OwnedGlobals;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Shockah.ItemAffix
 {
-	public class AffixGlobalProjectile : GlobalProjectile
+	class AffixGlobalProjectile : OwnedGlobalProjectile
 	{
-		public override void PostAI(Projectile projectile)
+		public override void OnHitNPC(Projectile _, NPC target, int damage, float knockback, bool crit)
 		{
-			Player player = projectile.GetOwner();
+			if (weapon == null)
+				return;
+			Player player = owner.GetOwner();
 			if (player == null)
 				return;
 
-			AffixProjectileInfo info = projectile.GetAffixInfo(mod);
-			if (info.weapon == null)
-				info.weapon = player.HeldItem;
-		}
-
-		public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
-		{
-			AffixProjectileInfo info = projectile.GetAffixInfo(mod);
-			if (info.weapon != null)
+			weapon.GetAffixInfo().HookOnHitNPC(weapon, player, owner, target, damage, knockback, crit);
+			foreach (Item equippedItem in player.armor)
 			{
-				info.weapon.GetAffixInfo(mod)?.OnHitNPC(info.weapon, info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
-				foreach (Item equippedItem in projectile.GetOwner().armor)
-				{
-					equippedItem.GetAffixInfo(mod)?.OnHitNPC(equippedItem, info.weapon, projectile.GetOwner(), projectile, target, damage, knockback, crit);
-				}
+				equippedItem.GetAffixInfo().HookOnHitNPC(weapon, player, owner, target, damage, knockback, crit);
 			}
 		}
 	}
