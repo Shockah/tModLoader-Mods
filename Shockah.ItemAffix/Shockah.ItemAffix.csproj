@@ -56,8 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shockah.Utils\**">
-      <Link>**</Link>
+    <Compile Include="..\Shockah.Utils\**.cs">
+      <Link>%(RecursiveDir)%(FileName)</Link>
     </Compile>
     <Compile Include="Affix.cs" />
     <Compile Include="AffixGlobalItem.cs" />
