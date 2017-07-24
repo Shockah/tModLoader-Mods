@@ -56,13 +56,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shockah.Utils\**.cs">
-      <Link>%(RecursiveDir)%(FileName)</Link>
+    <Compile Include="..\Shockah.Utils\**\*.cs">
+      <Link>Shockah.Utils\%(RecursiveDir)%(FileName)</Link>
     </Compile>
+    <Compile Include="Affixes\WarforgedAffix.cs" />
     <Compile Include="Affix.cs" />
-    <Compile Include="AffixGlobalItem.cs" />
-    <Compile Include="AffixGlobalItem+Info.cs" />
     <Compile Include="AffixGlobalItem+Hooks.cs" />
+    <Compile Include="AffixGlobalItem+Info.cs" />
+    <Compile Include="AffixGlobalItem.cs" />
     <Compile Include="AffixGlobalProjectile.cs" />
     <Compile Include="AffixMod.cs" />
     <Compile Include="Item+AffixExtensions.cs" />
