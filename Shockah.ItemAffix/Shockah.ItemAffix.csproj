@@ -69,6 +69,7 @@
     <Compile Include="Item+AffixExtensions.cs" />
     <Compile Include="NamedItemAffix.cs" />
     <Compile Include="UnloadedAffix.cs" />
+    <Compile Include="AffixRarity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -7,7 +7,7 @@ namespace Shockah.ItemAffix
 	{
 		public readonly TagCompound tag;
 
-		public UnloadedAffix(TagCompound tag) : base("Unloaded Affix")
+		public UnloadedAffix(TagCompound tag) : base("Unloaded Affix", (AffixRarity)tag.GetInt("rarity"))
 		{
 			this.tag = tag;
 		}

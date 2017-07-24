@@ -7,12 +7,14 @@ namespace Shockah.ItemAffix
 {
 	public abstract class Affix : TagSerializable
 	{
-		public string name { get; private set; }
+		public readonly string name;
+		public readonly AffixRarity rarity;
 		public Item item { get; private set; }
 
-		protected Affix(string name)
+		protected Affix(string name, AffixRarity rarity)
 		{
 			this.name = name;
+			this.rarity = rarity;
 		}
 
 		public Affix Clone(Item item)
@@ -27,6 +29,7 @@ namespace Shockah.ItemAffix
 		{
 			TagCompound tag = new TagCompound();
 			tag["name"] = name;
+			tag["rarity"] = (int)rarity;
 			return tag;
 		}
 

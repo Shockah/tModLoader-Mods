@@ -9,7 +9,7 @@
 
 		public readonly string format;
 
-		public NamedItemAffix(string name, string format = PrefixFormat) : base(name)
+		public NamedItemAffix(string name, AffixRarity rarity, string format = PrefixFormat) : base(name, rarity)
 		{
 			this.format = format;
 		}
