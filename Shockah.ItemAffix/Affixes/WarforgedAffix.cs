@@ -67,7 +67,7 @@ namespace Shockah.ItemAffix.Affixes
 			TooltipLine line = new TooltipLine(ModLoader.GetMod(AffixMod.ModName), GetType().FullName, $"+{(int)Math.Round(bonus)}% stats");
 			line.isModifier = true;
 			line.isModifierBad = false;
-			line.SetAffixRarityColor(rarity);
+			line.overrideColor = rarity.GetTooltipColor();
 			tooltips.Add(line);
 		}
 

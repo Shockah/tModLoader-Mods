@@ -1,67 +1,57 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace Shockah.ItemAffix
 {
 	public enum AffixRarity
 	{
-		Common,
-		Uncommon,
-		Rare,
-		Exotic,
-		Mythic,
-		Legendary,
-		Ascended
+		Common, Uncommon, Rare, Exotic, Mythic, Legendary, Ascended
 	}
 
 	public static class AffixRarities
 	{
+		public static readonly IDictionary<AffixRarity, float> minimumRandomFloat = new Dictionary<AffixRarity, float>
+		{
+			[AffixRarity.Common] = 0.00f,
+			[AffixRarity.Uncommon] = 0.30f,
+			[AffixRarity.Rare] = 0.55f,
+			[AffixRarity.Exotic] = 0.75f,
+			[AffixRarity.Mythic] = 0.90f,
+			[AffixRarity.Legendary] = 0.96f,
+			[AffixRarity.Ascended] = 0.99f
+		};
+
+		public static readonly IDictionary<AffixRarity, Color> tooltipColors = new Dictionary<AffixRarity, Color>
+		{
+			[AffixRarity.Common] = new Color(150, 150, 255),
+			[AffixRarity.Uncommon] = new Color(150, 255, 150),
+			[AffixRarity.Rare] = new Color(255, 200, 150),
+			[AffixRarity.Exotic] = new Color(255, 150, 150),
+			[AffixRarity.Mythic] = new Color(255, 150, 255),
+			[AffixRarity.Legendary] = new Color(210, 160, 255),
+			[AffixRarity.Ascended] = new Color(150, 255, 10)
+		};
+
+		public static float GetMinimumRandomFloat(this AffixRarity rarity)
+		{
+			return minimumRandomFloat[rarity];
+		}
+
+		public static Color GetTooltipColor(this AffixRarity rarity)
+		{
+			return tooltipColors[rarity];
+		}
+
 		public static AffixRarity GetRarityForRandomFloat(float f)
 		{
-			if (f >= 0.99f)
-				return AffixRarity.Ascended;
-			if (f >= 0.96f)
-				return AffixRarity.Legendary;
-			if (f >= 0.90f)
-				return AffixRarity.Mythic;
-			if (f >= 0.75f)
-				return AffixRarity.Exotic;
-			if (f >= 0.55f)
-				return AffixRarity.Rare;
-			if (f >= 0.30f)
-				return AffixRarity.Uncommon;
-			return AffixRarity.Common;
-		}
-	}
-
-	public static class AffixRarityExtensions
-	{
-		public static void SetAffixRarityColor(this TooltipLine tooltip, AffixRarity rarity)
-		{
-			switch (rarity)
+			foreach (AffixRarity rarity in Enum.GetValues(typeof(AffixRarity)).Cast<AffixRarity>().Reverse())
 			{
-				case AffixRarity.Common:
-					tooltip.overrideColor = new Color(150, 150, 255);
-					break;
-				case AffixRarity.Uncommon:
-					tooltip.overrideColor = new Color(150, 255, 150);
-					break;
-				case AffixRarity.Rare:
-					tooltip.overrideColor = new Color(255, 200, 150);
-					break;
-				case AffixRarity.Exotic:
-					tooltip.overrideColor = new Color(255, 150, 150);
-					break;
-				case AffixRarity.Mythic:
-					tooltip.overrideColor = new Color(255, 150, 255);
-					break;
-				case AffixRarity.Legendary:
-					tooltip.overrideColor = new Color(210, 160, 255);
-					break;
-				case AffixRarity.Ascended:
-					tooltip.overrideColor = new Color(150, 255, 10);
-					break;
+				if (f >= rarity.GetMinimumRandomFloat())
+					return rarity;
 			}
+			return AffixRarity.Common;
 		}
 	}
 }
