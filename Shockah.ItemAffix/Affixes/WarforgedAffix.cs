@@ -11,43 +11,31 @@ namespace Shockah.ItemAffix.Affixes
 	{
 		public readonly float bonus;
 
-		public static WarforgedAffix CreateForRarity(AffixRarity rarity, Random rand)
-		{
-			float bonus = 0f;
-			switch (rarity)
-			{
-				case AffixRarity.Common:
-					bonus = 0.03f + rand.NextFloat() * 0.02f;
-					break;
-				case AffixRarity.Uncommon:
-					bonus = 0.05f + rand.NextFloat() * 0.05f;
-					break;
-				case AffixRarity.Rare:
-					bonus = 0.10f + rand.NextFloat() * 0.05f;
-					break;
-				case AffixRarity.Exotic:
-					bonus = 0.15f + rand.NextFloat() * 0.10f;
-					break;
-				case AffixRarity.Mythic:
-					bonus = 0.25f + rand.NextFloat() * 0.10f;
-					break;
-				case AffixRarity.Legendary:
-					bonus = 0.35f + rand.NextFloat() * 0.15f;
-					break;
-				case AffixRarity.Ascended:
-					bonus = 0.50f + rand.NextFloat() * 0.20f;
-					break;
-			}
-			return new WarforgedAffix(rarity, bonus);
-		}
-
 		public static readonly Func<TagCompound, WarforgedAffix> DESERIALIZER = tag =>
 		{
-			return new WarforgedAffix(
-				(AffixRarity)tag.GetInt("rarity"),
-				tag.GetFloat("bonus")
-			);
+			return new WarforgedAffix((AffixRarity)tag.GetInt("rarity"), tag.GetFloat("bonus"));
 		};
+
+		static readonly IDictionary<AffixRarity, Func<Random, float>> bonusValues = new Dictionary<AffixRarity, Func<Random, float>>
+		{
+			[AffixRarity.Common] = rand => CalculateBonus(rand, 0.03f, 0.02f),
+			[AffixRarity.Uncommon] = rand => CalculateBonus(rand, 0.05f, 0.05f),
+			[AffixRarity.Rare] = rand => CalculateBonus(rand, 0.10f, 0.05f),
+			[AffixRarity.Exotic] = rand => CalculateBonus(rand, 0.15f, 0.10f),
+			[AffixRarity.Mythic] = rand => CalculateBonus(rand, 0.25f, 0.10f),
+			[AffixRarity.Legendary] = rand => CalculateBonus(rand, 0.35f, 0.15f),
+			[AffixRarity.Ascended] = rand => CalculateBonus(rand, 0.50f, 0.20f)
+		};
+
+		public static WarforgedAffix CreateForRarity(AffixRarity rarity, Random rand)
+		{
+			return new WarforgedAffix(rarity, bonusValues[rarity](rand));
+		}
+
+		static float CalculateBonus(Random rand, float @base, float extra)
+		{
+			return @base + rand.NextFloat() * extra;
+		}
 
 		public WarforgedAffix(AffixRarity rarity, float bonus) : base("Warforged", rarity, "{item}+")
 		{

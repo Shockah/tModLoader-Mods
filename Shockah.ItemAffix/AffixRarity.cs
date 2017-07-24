@@ -12,7 +12,7 @@ namespace Shockah.ItemAffix
 
 	public static class AffixRarities
 	{
-		public static readonly IDictionary<AffixRarity, float> minimumRandomFloat = new Dictionary<AffixRarity, float>
+		static readonly IDictionary<AffixRarity, float> minimumRandomFloat = new Dictionary<AffixRarity, float>
 		{
 			[AffixRarity.Common] = 0.00f,
 			[AffixRarity.Uncommon] = 0.30f,
@@ -23,7 +23,7 @@ namespace Shockah.ItemAffix
 			[AffixRarity.Ascended] = 0.99f
 		};
 
-		public static readonly IDictionary<AffixRarity, Color> tooltipColors = new Dictionary<AffixRarity, Color>
+		static readonly IDictionary<AffixRarity, Color> tooltipColors = new Dictionary<AffixRarity, Color>
 		{
 			[AffixRarity.Common] = new Color(150, 150, 255),
 			[AffixRarity.Uncommon] = new Color(150, 255, 150),
