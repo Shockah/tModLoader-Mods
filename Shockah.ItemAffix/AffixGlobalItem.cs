@@ -16,6 +16,25 @@ namespace Shockah.ItemAffix
 			return clone;
 		}
 
+		public override void ModifyTooltips(Item _, List<TooltipLine> tooltips)
+		{
+			TooltipLine nameLine = tooltips.Find(line => line.Name == "ItemName");
+			if (nameLine != null)
+				nameLine.text = HookGetFormattedName(nameLine.text);
+
+			HookModifyTooltips(tooltips);
+		}
+
+		public override void SetDefaults(Item _)
+		{
+			HookApplyChanges();
+		}
+
+		public override void PostReforge(Item item)
+		{
+			HookApplyChanges();
+		}
+
 		public override void OnHitNPC(Item _, Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 			HookOnHitNPC(owner, player, target, damage, knockBack, crit);
