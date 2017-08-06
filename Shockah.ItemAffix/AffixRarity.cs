@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Shockah.Utils;
 
 namespace Shockah.ItemAffix
 {
@@ -42,6 +43,11 @@ namespace Shockah.ItemAffix
 		public static Color GetTooltipColor(this AffixRarity rarity)
 		{
 			return tooltipColors[rarity];
+		}
+
+		public static AffixRarity GetRandomRarity(Random rand)
+		{
+			return GetRarityForRandomFloat(rand.NextFloat());
 		}
 
 		public static AffixRarity GetRarityForRandomFloat(float f)

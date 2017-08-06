@@ -18,23 +18,18 @@ namespace Shockah.ItemAffix.Affixes
 
 		static readonly IDictionary<AffixRarity, Func<Random, float>> bonusValues = new Dictionary<AffixRarity, Func<Random, float>>
 		{
-			[AffixRarity.Common] = rand => CalculateBonus(rand, 0.03f, 0.02f),
-			[AffixRarity.Uncommon] = rand => CalculateBonus(rand, 0.05f, 0.05f),
-			[AffixRarity.Rare] = rand => CalculateBonus(rand, 0.10f, 0.05f),
-			[AffixRarity.Exotic] = rand => CalculateBonus(rand, 0.15f, 0.10f),
-			[AffixRarity.Mythic] = rand => CalculateBonus(rand, 0.25f, 0.10f),
-			[AffixRarity.Legendary] = rand => CalculateBonus(rand, 0.35f, 0.15f),
-			[AffixRarity.Ascended] = rand => CalculateBonus(rand, 0.50f, 0.20f)
+			[AffixRarity.Common] = rand => rand.BaseWithBonus(0.03f, 0.02f),
+			[AffixRarity.Uncommon] = rand => rand.BaseWithBonus(0.05f, 0.05f),
+			[AffixRarity.Rare] = rand => rand.BaseWithBonus(0.10f, 0.05f),
+			[AffixRarity.Exotic] = rand => rand.BaseWithBonus(0.15f, 0.10f),
+			[AffixRarity.Mythic] = rand => rand.BaseWithBonus(0.25f, 0.10f),
+			[AffixRarity.Legendary] = rand => rand.BaseWithBonus(0.35f, 0.15f),
+			[AffixRarity.Ascended] = rand => rand.BaseWithBonus(0.50f, 0.20f)
 		};
 
 		public static WarforgedAffix CreateForRarity(AffixRarity rarity, Random rand)
 		{
 			return new WarforgedAffix(rarity, bonusValues[rarity](rand));
-		}
-
-		static float CalculateBonus(Random rand, float @base, float extra)
-		{
-			return @base + rand.NextFloat() * extra;
 		}
 
 		public WarforgedAffix(AffixRarity rarity, float bonus) : base("Warforged", rarity, "{item}+")

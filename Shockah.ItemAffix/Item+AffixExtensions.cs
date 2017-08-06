@@ -20,17 +20,17 @@ namespace Shockah.ItemAffix
 
 		public static void ApplyAffix(this Item item, Affix affix)
 		{
-			item.GetAffixInfo()?.ApplyAffix(affix);
+			item.GetAffixInfo().ApplyAffix(affix);
 		}
 
 		public static void RemoveAffix(this Item item, Affix affix)
 		{
-			item.GetAffixInfo()?.RemoveAffix(affix);
+			item.GetAffixInfo().RemoveAffix(affix);
 		}
 
 		public static IList<Affix> GetAffixes(this Item item)
 		{
-			return item.GetAffixInfo()?.affixes.AsReadOnly();
+			return item.GetAffixInfo().affixes.AsReadOnly();
 		}
 
 		private static bool IsAffixableBase(this Item item)

@@ -30,7 +30,7 @@ namespace Shockah.ItemAffix
 			HookApplyChanges();
 		}
 
-		public override void PostReforge(Item item)
+		public override void PostReforge(Item _)
 		{
 			HookApplyChanges();
 		}

@@ -58,12 +58,9 @@ namespace Shockah.Utils
 			return (float)self.NextDouble();
 		}
 
-		/*public static void ResetToDefaultKeepingModInfo(this Item self)
+		public static float BaseWithBonus(this Random self, float @base, float extra)
 		{
-			FieldInfo field = typeof(Item).GetField("itemInfo", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-			ItemInfo[] cachedInfo = (ItemInfo[])field.GetValue(self);
-			self.SetDefaults(self.type);
-			field.SetValue(self, cachedInfo.Select(info => info.Clone()).ToArray());
-		}*/
+			return @base + self.NextFloat() * extra;
+		}
 	}
 }
