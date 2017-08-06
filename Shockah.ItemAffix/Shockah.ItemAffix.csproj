@@ -59,6 +59,7 @@
     <Compile Include="..\Shockah.Utils\**\*.cs">
       <Link>Shockah.Utils\%(RecursiveDir)%(FileName)</Link>
     </Compile>
+    <Compile Include="Affixes\SharpAffix.cs" />
     <Compile Include="Affixes\WarforgedAffix.cs" />
     <Compile Include="Affix.cs" />
     <Compile Include="AffixGlobalItem+Hooks.cs" />
@@ -66,8 +67,11 @@
     <Compile Include="AffixGlobalItem.cs" />
     <Compile Include="AffixGlobalProjectile.cs" />
     <Compile Include="AffixMod.cs" />
+    <Compile Include="AffixModPlayer+Info.cs" />
+    <Compile Include="AffixModPlayer.cs" />
     <Compile Include="Item+AffixExtensions.cs" />
     <Compile Include="NamedItemAffix.cs" />
+    <Compile Include="Player+AffixExtensions.cs" />
     <Compile Include="UnloadedAffix.cs" />
     <Compile Include="AffixRarity.cs" />
   </ItemGroup>
